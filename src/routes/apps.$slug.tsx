@@ -3,10 +3,10 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { StoreBadges } from "@/components/StoreBadges";
-import { APPS, getApp } from "@/lib/apps-data";
+import { APPS, getApp, type AppEntry } from "@/lib/apps-data";
 
 export const Route = createFileRoute("/apps/$slug")({
-  loader: ({ params }) => {
+  loader: ({ params }): { app: AppEntry } => {
     const app = getApp(params.slug);
     if (!app) throw notFound();
     return { app };
