@@ -130,7 +130,7 @@ function AppDetailPage() {
             Everything you need.
           </h2>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {app.features.map((f, i) => (
+            {app.features.map((f: AppEntry["features"][number], i: number) => (
               <div
                 key={f.title}
                 className="rounded-3xl border border-black/5 bg-white p-7"
