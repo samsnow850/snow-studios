@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { apps, getApp, type AppEntry, type AppReview } from "@/data/apps";
 import { getAppMeta, type AppMeta } from "@/lib/app-meta.functions";
+import { StoreBadges } from "@/components/StoreBadges";
 
 export const Route = createFileRoute("/apps/$slug")({
   loader: async ({ params }) => {
