@@ -7,6 +7,7 @@ import sfPoposDetail from "@/assets/sfpopos-detail.png.asset.json";
 import sfPoposFavorites from "@/assets/sfpopos-favorites.png.asset.json";
 import sfPoposLogo from "@/assets/sfpopos-logo.png.asset.json";
 import nyPopsLogo from "@/assets/nypops-logo.png.asset.json";
+import shelfTrackLogo from "@/assets/shelftrack-logo.png.asset.json";
 
 export type AppPlatform = "iOS" | "Android" | "Universal";
 
@@ -17,6 +18,15 @@ export type AppReview = {
   title: string;
   body: string;
   date: string; // display string like "Mar 2025"
+};
+
+export type AppFaq = { q: string; a: string };
+
+export type AppChangelogEntry = {
+  version: string;
+  date: string;
+  notes: string[];
+  behind?: string[];
 };
 
 export type AppEntry = {
@@ -35,6 +45,8 @@ export type AppEntry = {
   screenshots?: { src: string; label: string }[];
   features: { title: string; body: string }[];
   reviews: AppReview[];
+  faqs?: AppFaq[];
+  changelog?: AppChangelogEntry[];
 };
 
 export const apps: AppEntry[] = [
