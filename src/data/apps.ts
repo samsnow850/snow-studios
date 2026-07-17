@@ -5,6 +5,8 @@ import sfPoposHome from "@/assets/sfpopos-homepage.png.asset.json";
 import sfPoposMap from "@/assets/sfpopos-map.png.asset.json";
 import sfPoposDetail from "@/assets/sfpopos-detail.png.asset.json";
 import sfPoposFavorites from "@/assets/sfpopos-favorites.png.asset.json";
+import sfPoposLogo from "@/assets/sfpopos-logo.png.asset.json";
+import nyPopsLogo from "@/assets/nypops-logo.png.asset.json";
 
 export type AppPlatform = "iOS" | "Android" | "Universal";
 
@@ -29,6 +31,7 @@ export type AppEntry = {
   itunesId?: string;
   image: string;
   imageAspect: "4/5" | "21/9";
+  logo?: string;
   screenshots?: { src: string; label: string }[];
   features: { title: string; body: string }[];
   reviews: AppReview[];
@@ -47,6 +50,7 @@ export const apps: AppEntry[] = [
     playStore: "https://play.google.com/store/apps/details?id=com.sfpopos.app",
     image: sfPoposImage,
     imageAspect: "4/5",
+    logo: sfPoposLogo.url,
     screenshots: [
       { src: sfPoposHome.url, label: "Browse" },
       { src: sfPoposMap.url, label: "Map" },
@@ -104,6 +108,7 @@ export const apps: AppEntry[] = [
     playStore: "https://play.google.com/store/apps/details?id=com.samuelsnow.nypops",
     image: nyPopsImage,
     imageAspect: "4/5",
+    logo: nyPopsLogo.url,
     features: [
       { title: "Hidden places, mapped", body: "Hundreds of public spaces across Manhattan and the boroughs." },
       { title: "Clean, free, quiet", body: "Filter for the qualities that matter when you need a break." },
