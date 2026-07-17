@@ -9,6 +9,7 @@ export function FloatingNav() {
   const isHome = pathname === "/";
   const isAbout = pathname === "/about";
   const isApps = pathname.startsWith("/apps");
+  const isContact = pathname === "/contact";
 
   const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -101,6 +102,21 @@ export function FloatingNav() {
           }`}
         >
           About
+        </Link>
+
+        <Link
+          to="/contact"
+          onClick={(e) => {
+            if (isContact) {
+              e.preventDefault();
+              scrollTop();
+            }
+          }}
+          className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors hover:bg-white/5 hover:text-white ${
+            isContact ? "bg-white/10 text-white" : "text-white/80"
+          }`}
+        >
+          Contact
         </Link>
       </div>
     </nav>
