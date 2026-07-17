@@ -25,6 +25,7 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-2 text-sm">
               <li><Link to="/" className="text-ink/70 hover:text-ink">Home</Link></li>
               <li><Link to="/about" className="text-ink/70 hover:text-ink">About</Link></li>
+              <li><Link to="/contact" className="text-ink/70 hover:text-ink">Contact</Link></li>
               <li><a href="https://www.instagram.com/samsnow850" target="_blank" rel="noreferrer" className="text-ink/70 hover:text-ink">Instagram</a></li>
             </ul>
           </div>
