@@ -1,6 +1,10 @@
 import sfPoposImage from "@/assets/app-sf-popos.jpg";
 import nyPopsImage from "@/assets/app-ny-pops.jpg";
 import shelfTrackImage from "@/assets/app-shelf-track.jpg";
+import sfPoposHome from "@/assets/sfpopos-homepage.png.asset.json";
+import sfPoposMap from "@/assets/sfpopos-map.png.asset.json";
+import sfPoposDetail from "@/assets/sfpopos-detail.png.asset.json";
+import sfPoposFavorites from "@/assets/sfpopos-favorites.png.asset.json";
 
 export type AppPlatform = "iOS" | "Android" | "Universal";
 
@@ -25,6 +29,7 @@ export type AppEntry = {
   itunesId?: string;
   image: string;
   imageAspect: "4/5" | "21/9";
+  screenshots?: { src: string; label: string }[];
   features: { title: string; body: string }[];
   reviews: AppReview[];
 };
@@ -42,6 +47,12 @@ export const apps: AppEntry[] = [
     playStore: "https://play.google.com/store/apps/details?id=com.sfpopos.app",
     image: sfPoposImage,
     imageAspect: "4/5",
+    screenshots: [
+      { src: sfPoposHome.url, label: "Browse" },
+      { src: sfPoposMap.url, label: "Map" },
+      { src: sfPoposDetail.url, label: "Details" },
+      { src: sfPoposFavorites.url, label: "Favorites" },
+    ],
     features: [
       { title: "Every space, one app", body: "Access all 80+ POPOS across San Francisco in a single, focused map." },
       { title: "Spots near you", body: "An interactive map surfaces hidden gems right around the corner." },

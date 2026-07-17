@@ -107,15 +107,37 @@ function AppPage() {
       </header>
 
       <section className="mx-auto max-w-5xl px-6">
-        <div className="relative overflow-hidden rounded-3xl bg-stone outline outline-1 -outline-offset-1 outline-black/5">
-          <img
-            src={app.image}
-            alt={`${app.name} preview`}
-            className={`w-full object-cover ${
-              app.imageAspect === "21/9" ? "aspect-[21/9]" : "aspect-[4/5] md:aspect-[16/10]"
-            }`}
-          />
-        </div>
+        {app.screenshots && app.screenshots.length > 0 ? (
+          <div className="rounded-3xl bg-stone p-6 outline outline-1 -outline-offset-1 outline-black/5 sm:p-10">
+            <ul className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2 sm:grid sm:snap-none sm:grid-cols-4 sm:gap-6 sm:overflow-visible">
+              {app.screenshots.map((s) => (
+                <li key={s.src} className="flex shrink-0 snap-center flex-col items-center gap-3 sm:shrink">
+                  <div className="relative w-[220px] shrink-0 overflow-hidden rounded-[2.25rem] bg-black p-1.5 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.35)] sm:w-full">
+                    <img
+                      src={s.src}
+                      alt={`${app.name} — ${s.label}`}
+                      className="aspect-[9/19.5] w-full rounded-[1.85rem] object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <span className="text-xs font-medium uppercase tracking-widest text-ink/50">
+                    {s.label}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <div className="relative overflow-hidden rounded-3xl bg-stone outline outline-1 -outline-offset-1 outline-black/5">
+            <img
+              src={app.image}
+              alt={`${app.name} preview`}
+              className={`w-full object-cover ${
+                app.imageAspect === "21/9" ? "aspect-[21/9]" : "aspect-[4/5] md:aspect-[16/10]"
+              }`}
+            />
+          </div>
+        )}
       </section>
 
       <section className="mx-auto max-w-5xl px-6 pt-24">
