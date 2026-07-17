@@ -157,6 +157,8 @@ function AppPage() {
 
       <ReviewsSection app={app} meta={meta} />
 
+      {app.slug === "sf-popos" && <FaqSection />}
+
       <section className="mx-auto mt-24 max-w-5xl border-t border-ink/5 px-6 pt-12">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div>
@@ -322,5 +324,55 @@ function ReviewCard({ review }: { review: AppReview }) {
         {review.location ? ` · ${review.location}` : ""}
       </p>
     </li>
+  );
+}
+
+const faqs = [
+  {
+    q: "Is this app free to use?",
+    a: "YES! The app is 100% free to use with no ads or in-app purchases.",
+  },
+  {
+    q: "Do I need an internet connection to use the app?",
+    a: "Nope! The app works totally well offline except for the map functionality.",
+  },
+  {
+    q: "Why does the app need location permission?",
+    a: "We use your location to find the nearest POPOS near you to enhance your experience.",
+  },
+  {
+    q: "What makes this app different from other San Francisco guides?",
+    a: "SF POPOS focuses specifically on San Francisco's privately owned public spaces, hidden green spaces often overlooked by other guides. Our app is designed to work offline and provides detailed information about these unique places. The app is 100% free with no ads or in-app purchases.",
+  },
+  {
+    q: "Can I share POPOS locations with friends?",
+    a: "You totally can. You can go inside of a detail and click the share icon and share it with anybody.",
+  },
+];
+
+function FaqSection() {
+  return (
+    <section className="mx-auto max-w-5xl px-6 pt-24">
+      <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+        <div>
+          <h2 className="font-display text-sm font-bold uppercase tracking-widest text-ink/40">
+            FAQs
+          </h2>
+        </div>
+        <div className="md:col-span-2">
+          <h3 className="mb-10 font-display text-2xl font-light leading-snug text-ink/80">
+            Frequently Asked Questions
+          </h3>
+          <ul className="grid grid-cols-1 gap-8">
+            {faqs.map((faq) => (
+              <li key={faq.q}>
+                <h4 className="font-display text-lg font-medium">{faq.q}</h4>
+                <p className="mt-2 leading-relaxed text-ink/60">{faq.a}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
   );
 }
