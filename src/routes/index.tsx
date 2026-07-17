@@ -1,145 +1,107 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { SiteNav } from "@/components/SiteNav";
-import { SiteFooter } from "@/components/SiteFooter";
-import { AppCard } from "@/components/AppCard";
-import { APPS } from "@/lib/apps-data";
-import avatarMe from "@/assets/avatar-me.jpg";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { apps } from "@/data/apps";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Samuel — Small apps that solve real problems" },
-      {
-        name: "description",
-        content:
-          "Indie developer building useful, polished mobile apps. Home for SF POPOS, NY POPS, and Shelf Track.",
-      },
-      {
-        property: "og:title",
-        content: "Samuel — Small apps that solve real problems",
-      },
-      {
-        property: "og:description",
-        content:
-          "Indie developer building useful, polished mobile apps. Home for SF POPOS, NY POPS, and Shelf Track.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-  }),
   component: Index,
 });
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background">
-      <SiteNav />
-
-      <main>
-        {/* Hero */}
-        <section className="relative mx-auto max-w-5xl px-6 pt-40 sm:pt-48">
-          <div className="mx-auto max-w-3xl text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-black/5 bg-white px-3 py-1 text-xs font-medium text-muted-foreground shadow-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              Independent developer · Shipping now
-            </div>
-            <h1 className="mt-8 text-5xl font-semibold tracking-tight text-foreground sm:text-7xl">
-              Small apps that
-              <br />
-              solve <span className="text-accent">real problems.</span>
-            </h1>
-            <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground sm:text-xl">
-              I design and build focused mobile apps — thoughtful, fast, and
-              easy to live with.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-              <a
-                href="#apps"
-                className="inline-flex h-12 items-center gap-2 rounded-full bg-foreground px-6 text-sm font-medium text-background transition-transform hover:-translate-y-0.5"
-              >
-                See the apps
-              </a>
-              <a
-                href="#about"
-                className="inline-flex h-12 items-center gap-2 rounded-full border border-black/10 bg-white px-6 text-sm font-medium text-foreground transition-colors hover:bg-muted"
-              >
-                About me
-              </a>
-            </div>
-          </div>
-
-          {/* App icon showcase */}
-          <div className="mt-20 flex items-center justify-center gap-4 sm:gap-6">
-            {APPS.map((app, i) => (
-              <img
-                key={app.slug}
-                src={app.icon}
-                alt={`${app.name} icon`}
-                width={120}
-                height={120}
-                className={`h-20 w-20 rounded-2xl object-cover shadow-[0_10px_40px_-10px_rgba(0,0,0,0.25)] sm:h-28 sm:w-28 sm:rounded-[26px] ${
-                  i === 1 ? "translate-y-[-8px] sm:translate-y-[-14px]" : ""
-                }`}
-              />
-            ))}
-          </div>
-        </section>
-
-        {/* About */}
-        <section id="about" className="mx-auto mt-40 max-w-4xl px-6">
-          <div className="text-center text-sm font-medium uppercase tracking-wider text-muted-foreground">
-            About
-          </div>
-          <div className="mt-8 grid gap-10 sm:grid-cols-[auto_1fr] sm:items-center">
-            <img
-              src={avatarMe}
-              alt="Portrait"
-              width={160}
-              height={160}
-              loading="lazy"
-              className="mx-auto h-32 w-32 rounded-full object-cover shadow-[0_10px_40px_-10px_rgba(0,0,0,0.2)] sm:h-40 sm:w-40"
-            />
-            <p className="text-center text-xl leading-relaxed tracking-tight text-foreground sm:text-left sm:text-2xl">
-              I'm a developer who enjoys building useful, polished apps that
-              solve real problems. I focus on creating simple, thoughtful
-              experiences and turning ideas into products people can actually
-              use.
-            </p>
-          </div>
-        </section>
-
-        {/* Apps grid */}
-        <section id="apps" className="mx-auto mt-40 max-w-6xl px-6">
-          <div className="text-center text-sm font-medium uppercase tracking-wider text-muted-foreground">
-            Apps
-          </div>
-          <h2 className="mx-auto mt-3 max-w-2xl text-center text-4xl font-semibold tracking-tight sm:text-5xl">
-            Three apps.<br className="sm:hidden" /> One idea each.
-          </h2>
-          <p className="mx-auto mt-4 max-w-lg text-center text-muted-foreground">
-            Every app is built to do one thing genuinely well.
+    <div className="min-h-screen bg-canvas pb-40 text-ink">
+      {/* Hero */}
+      <header className="mx-auto max-w-5xl px-6 pt-28 pb-20 md:pt-40 md:pb-24">
+        <div className="max-w-3xl">
+          <p className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-ink/40">
+            Independent developer
           </p>
-
-          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {APPS.map((app) => (
-              <AppCard key={app.slug} app={app} />
-            ))}
-          </div>
-        </section>
-
-        {/* Closing */}
-        <section className="mx-auto mt-40 max-w-3xl px-6 pb-32 text-center">
-          <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-            More coming soon.
-          </h2>
-          <p className="mx-auto mt-4 max-w-md text-muted-foreground">
-            Always shipping something small and useful next.
+          <h1 className="font-display text-4xl font-light leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
+            Building{" "}
+            <span className="font-medium">useful, polished apps</span>{" "}
+            that solve real problems.
+          </h1>
+          <p className="mt-8 max-w-2xl text-lg font-light leading-relaxed text-ink/60 md:text-xl">
+            I focus on simple, thoughtful experiences and turning ideas into products
+            people can actually use. Three of them are below.
           </p>
-        </section>
+        </div>
+      </header>
+
+      {/* Apps grid */}
+      <main className="mx-auto grid max-w-5xl grid-cols-1 gap-12 px-6 md:grid-cols-2">
+        {apps.map((app, i) => {
+          const isWide = app.imageAspect === "21/9";
+          return (
+            <Link
+              key={app.slug}
+              to="/apps/$slug"
+              params={{ slug: app.slug }}
+              className={`group block ${isWide ? "md:col-span-2" : ""}`}
+            >
+              <div className="relative overflow-hidden rounded-3xl bg-stone outline outline-1 -outline-offset-1 outline-black/5">
+                <img
+                  src={app.image}
+                  alt={`${app.name} preview`}
+                  loading={i === 0 ? "eager" : "lazy"}
+                  className={`w-full object-cover transition-transform duration-500 group-hover:scale-105 ${
+                    isWide ? "aspect-[21/9]" : "aspect-[4/5]"
+                  }`}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+              </div>
+              <div className="mt-6 flex items-start justify-between gap-4">
+                <div>
+                  <h2 className="font-display text-2xl font-medium">{app.name}</h2>
+                  <p className="mt-1 text-ink/50">{app.tagline}</p>
+                </div>
+                <span className="shrink-0 rounded border border-ink/10 px-2 py-1 text-[10px] font-bold uppercase tracking-tight">
+                  {app.platforms.join(" + ")}
+                </span>
+              </div>
+            </Link>
+          );
+        })}
       </main>
 
-      <SiteFooter />
+      {/* About */}
+      <section id="about" className="mx-auto mt-40 max-w-5xl border-t border-ink/5 px-6 pt-12 pb-20 scroll-mt-24">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+          <div className="md:col-span-2">
+            <h3 className="mb-4 font-display text-sm font-bold uppercase tracking-widest text-ink/40">
+              About
+            </h3>
+            <p className="text-2xl font-light leading-snug text-ink/80">
+              I'm a developer who enjoys building useful, polished apps that solve real
+              problems. I focus on creating simple, thoughtful experiences and turning
+              ideas into products people can actually use.
+            </p>
+          </div>
+          <div>
+            <h3 className="mb-4 font-display text-sm font-bold uppercase tracking-widest text-ink/40">
+              Elsewhere
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="https://apps.apple.com/us/developer/samuel-snow/id1620253929"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-lg transition-colors hover:text-[var(--color-accent-blue)]"
+                >
+                  App Store
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:hello@example.com"
+                  className="text-lg transition-colors hover:text-[var(--color-accent-blue)]"
+                >
+                  Email
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

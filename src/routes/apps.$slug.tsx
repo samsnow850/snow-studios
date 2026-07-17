@@ -1,212 +1,304 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, ExternalLink } from "lucide-react";
-import { SiteNav } from "@/components/SiteNav";
-import { SiteFooter } from "@/components/SiteFooter";
-import { StoreBadges } from "@/components/StoreBadges";
-import { APPS, getApp, type AppEntry } from "@/lib/apps-data";
+import { apps, getApp, type AppEntry, type AppReview } from "@/data/apps";
+import { getAppMeta, type AppMeta } from "@/lib/app-meta.functions";
 
 export const Route = createFileRoute("/apps/$slug")({
-  loader: ({ params }): { app: AppEntry } => {
-    const app = getApp(params.slug);
-    if (!app) throw notFound();
-    return { app };
+  loader: async ({ params }) => {
+    const valid = apps.find((a) => a.slug === params.slug);
+    if (!valid) throw notFound();
+    const meta: AppMeta = valid.itunesId
+      ? await getAppMeta({ data: { itunesId: valid.itunesId } })
+      : { version: null, updated: null, rating: null, ratingCount: null };
+    return { slug: valid.slug, meta };
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
-      return {
-        meta: [
-          { title: "App not found" },
-          { name: "robots", content: "noindex" },
-        ],
-      };
+      return { meta: [{ title: "App not found" }, { name: "robots", content: "noindex" }] };
     }
-    const { app } = loaderData;
-    const title = `${app.name} — ${app.tagline}`;
+    const app = getApp(loaderData.slug);
     return {
       meta: [
-        { title },
-        { name: "description", content: app.oneLiner },
-        { property: "og:title", content: title },
-        { property: "og:description", content: app.oneLiner },
-        { property: "og:type", content: "product" },
-        { property: "og:url", content: `/apps/${app.slug}` },
+        { title: `${app.name} — ${app.tagline}` },
+        { name: "description", content: app.short },
+        { property: "og:title", content: `${app.name} — ${app.tagline}` },
+        { property: "og:description", content: app.short },
+        { property: "og:type", content: "website" },
+        { property: "og:image", content: app.image },
         { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:image", content: app.image },
       ],
-      links: [{ rel: "canonical", href: `/apps/${app.slug}` }],
     };
   },
-  component: AppDetailPage,
-  notFoundComponent: AppNotFound,
+  component: AppPage,
 });
 
-function AppNotFound() {
+function formatUpdated(iso: string | null): string | null {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return null;
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
+function AppPage() {
+  const { slug, meta } = Route.useLoaderData();
+  const app = getApp(slug);
+  const updated = formatUpdated(meta.updated);
+
   return (
-    <div className="min-h-screen bg-background">
-      <SiteNav />
-      <div className="mx-auto max-w-3xl px-6 pt-40 text-center">
-        <h1 className="text-3xl font-semibold tracking-tight">App not found</h1>
-        <p className="mt-3 text-muted-foreground">
-          That app doesn't exist. Head back to the list.
-        </p>
+    <div className="min-h-screen bg-canvas pb-40 text-ink">
+      <header className="mx-auto max-w-5xl px-6 pt-28 pb-12 md:pt-36">
         <Link
           to="/"
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background"
+          className="mb-10 inline-flex items-center gap-2 text-sm font-medium text-ink/50 transition-colors hover:text-ink"
         >
-          <ArrowLeft className="h-4 w-4" /> Back home
+          <span aria-hidden>←</span> All apps
         </Link>
-      </div>
+
+        <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-ink/40">
+          {app.platforms.join(" · ")}
+        </p>
+        <h1 className="font-display text-4xl font-light leading-[1.05] tracking-tight md:text-6xl">
+          {app.name}
+        </h1>
+        <p className="mt-6 max-w-2xl text-xl font-light leading-relaxed text-ink/60 md:text-2xl">
+          {app.tagline}
+        </p>
+
+        {(meta.version || updated) && (
+          <div className="mt-8 flex flex-wrap gap-2">
+            {meta.version && (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-white px-3 py-1 text-xs font-medium text-ink/70">
+                <span className="text-ink/40">Version</span>
+                <span className="tabular-nums">{meta.version}</span>
+              </span>
+            )}
+            {updated && (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-white px-3 py-1 text-xs font-medium text-ink/70">
+                <span className="text-ink/40">Updated</span>
+                <span>{updated}</span>
+              </span>
+            )}
+          </div>
+        )}
+
+
+        <div className="mt-10 flex flex-wrap gap-3">
+          {app.appStore && (
+            <a
+              href={app.appStore}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-ink/85"
+            >
+              Download on the App Store
+            </a>
+          )}
+          {app.playStore && (
+            <a
+              href={app.playStore}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center rounded-full border border-ink/10 bg-white px-6 py-3 text-sm font-medium text-ink transition-colors hover:bg-stone"
+            >
+              Get it on Google Play
+            </a>
+          )}
+        </div>
+      </header>
+
+      <section className="mx-auto max-w-5xl px-6">
+        <div className="relative overflow-hidden rounded-3xl bg-stone outline outline-1 -outline-offset-1 outline-black/5">
+          <img
+            src={app.image}
+            alt={`${app.name} preview`}
+            className={`w-full object-cover ${
+              app.imageAspect === "21/9" ? "aspect-[21/9]" : "aspect-[4/5] md:aspect-[16/10]"
+            }`}
+          />
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-5xl px-6 pt-24">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+          <div>
+            <h2 className="font-display text-sm font-bold uppercase tracking-widest text-ink/40">
+              Overview
+            </h2>
+          </div>
+          <p className="text-2xl font-light leading-snug text-ink/80 md:col-span-2">
+            {app.long}
+          </p>
+        </div>
+      </section>
+
+      <FeaturesSection app={app} />
+
+      <ReviewsSection app={app} meta={meta} />
+
+      <section className="mx-auto mt-24 max-w-5xl border-t border-ink/5 px-6 pt-12">
+        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+          <div>
+            <h3 className="font-display text-2xl font-light md:text-3xl">
+              Get {app.name} today.
+            </h3>
+            <p className="mt-2 text-ink/60">{app.platforms.join(" · ")}</p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            {app.appStore && (
+              <a
+                href={app.appStore}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-ink/85"
+              >
+                App Store
+              </a>
+            )}
+            {app.playStore && (
+              <a
+                href={app.playStore}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center rounded-full border border-ink/10 bg-white px-6 py-3 text-sm font-medium text-ink transition-colors hover:bg-stone"
+              >
+                Google Play
+              </a>
+            )}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
 
-function AppDetailPage() {
-  const { app } = Route.useLoaderData();
+function FeaturesSection({ app }: { app: AppEntry }) {
+  return (
+    <section className="mx-auto max-w-5xl px-6 pt-24">
+      <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+        <div>
+          <h2 className="font-display text-sm font-bold uppercase tracking-widest text-ink/40">
+            Features
+          </h2>
+        </div>
+        <ul className="grid grid-cols-1 gap-8 md:col-span-2 md:grid-cols-2">
+          {app.features.map((f) => (
+            <li key={f.title}>
+              <h3 className="font-display text-lg font-medium">{f.title}</h3>
+              <p className="mt-2 text-ink/60 leading-relaxed">{f.body}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+function Stars({ rating, size = "sm" }: { rating: number; size?: "sm" | "md" | "lg" }) {
+  const rounded = Math.round(rating * 2) / 2;
+  const px = size === "lg" ? "text-2xl" : size === "md" ? "text-lg" : "text-sm";
+  return (
+    <span
+      className={`inline-flex ${px} tracking-tight`}
+      aria-label={`${rating.toFixed(1)} out of 5 stars`}
+    >
+      {[1, 2, 3, 4, 5].map((i) => {
+        const filled = i <= Math.floor(rounded);
+        const half = !filled && i - 0.5 === rounded;
+        return (
+          <span key={i} aria-hidden className="relative">
+            <span className={filled || half ? "text-amber-500" : "text-ink/15"}>
+              {filled ? "★" : half ? "★" : "★"}
+            </span>
+            {half && (
+              <span className="absolute inset-0 overflow-hidden text-ink/15" style={{ clipPath: "inset(0 0 0 50%)" }}>
+                ★
+              </span>
+            )}
+          </span>
+        );
+      })}
+    </span>
+  );
+}
+
+function ReviewsSection({ app, meta }: { app: AppEntry; meta: AppMeta }) {
+  const reviews = app.reviews;
+  const shownRating =
+    meta.rating ?? reviews.reduce((s, r) => s + r.rating, 0) / Math.max(reviews.length, 1);
+  const shownCount = meta.ratingCount ?? reviews.length;
+
+  const buckets = [5, 4, 3, 2, 1].map((star) => ({
+    star,
+    count: reviews.filter((r) => Math.round(r.rating) === star).length,
+  }));
+  const maxBucket = Math.max(1, ...buckets.map((b) => b.count));
 
   return (
-    <div className="min-h-screen bg-background">
-      <SiteNav />
+    <section className="mx-auto max-w-5xl px-6 pt-24">
+      <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+        <div>
+          <h2 className="font-display text-sm font-bold uppercase tracking-widest text-ink/40">
+            Reviews
+          </h2>
+        </div>
 
-      <main className="mx-auto max-w-5xl px-6 pb-24 pt-32 sm:pt-40">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          All apps
-        </Link>
-
-        {/* Hero */}
-        <section className="relative mt-8 overflow-hidden rounded-[32px] border border-black/5 bg-white p-8 sm:p-14">
-          <span
-            aria-hidden
-            className="pointer-events-none absolute -right-32 -top-32 h-80 w-80 rounded-full opacity-30 blur-3xl"
-            style={{ backgroundColor: app.accent }}
-          />
-          <div className="relative grid gap-10 sm:grid-cols-[auto_1fr] sm:items-center">
-            <img
-              src={app.icon}
-              alt={`${app.name} icon`}
-              width={160}
-              height={160}
-              className="h-32 w-32 shrink-0 rounded-[32px] object-cover shadow-[0_10px_40px_-10px_rgba(0,0,0,0.25)] sm:h-40 sm:w-40"
-            />
-            <div className="min-w-0">
-              <div className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
-                {app.appStoreUrl && app.playStoreUrl
-                  ? "iOS · Android"
-                  : app.appStoreUrl
-                    ? "iOS · iPadOS"
-                    : "Android"}
+        <div className="md:col-span-2">
+          <div className="grid grid-cols-1 gap-8 rounded-3xl border border-ink/5 bg-white p-8 sm:grid-cols-[auto_1fr] sm:items-center">
+            <div className="flex flex-col items-start">
+              <div className="font-display text-5xl font-light leading-none text-ink">
+                {shownRating.toFixed(1)}
               </div>
-              <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">
-                {app.name}
-              </h1>
-              <p className="mt-4 max-w-xl text-lg text-muted-foreground sm:text-xl">
-                {app.tagline}
-              </p>
-              <div className="mt-8">
-                <StoreBadges
-                  appStoreUrl={app.appStoreUrl}
-                  playStoreUrl={app.playStoreUrl}
-                />
+              <div className="mt-3">
+                <Stars rating={shownRating} size="md" />
+              </div>
+              <div className="mt-2 text-xs text-ink/50">
+                {shownCount.toLocaleString()} {shownCount === 1 ? "rating" : "ratings"}
               </div>
             </div>
+            <ul className="flex flex-col gap-1.5">
+              {buckets.map((b) => (
+                <li key={b.star} className="grid grid-cols-[auto_1fr_auto] items-center gap-3 text-xs text-ink/60">
+                  <span className="w-3 tabular-nums text-ink/40">{b.star}</span>
+                  <span className="h-1.5 overflow-hidden rounded-full bg-ink/5">
+                    <span
+                      className="block h-full rounded-full bg-amber-500"
+                      style={{ width: `${(b.count / maxBucket) * 100}%` }}
+                    />
+                  </span>
+                  <span className="w-6 text-right tabular-nums text-ink/40">{b.count}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-        </section>
 
-        {/* Description */}
-        <section className="mx-auto mt-20 max-w-2xl text-center">
-          <p className="text-2xl leading-relaxed tracking-tight text-foreground sm:text-3xl">
-            {app.description}
-          </p>
-        </section>
-
-        {/* Features */}
-        <section className="mt-20">
-          <div className="text-center text-sm font-medium uppercase tracking-wider text-muted-foreground">
-            Features
-          </div>
-          <h2 className="mt-2 text-center text-3xl font-semibold tracking-tight sm:text-4xl">
-            Everything you need.
-          </h2>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {app.features.map((f: AppEntry["features"][number], i: number) => (
-              <div
-                key={f.title}
-                className="rounded-3xl border border-black/5 bg-white p-7"
-              >
-                <div
-                  className="text-xs font-semibold"
-                  style={{ color: app.accent }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-                <h3 className="mt-3 text-lg font-semibold tracking-tight text-foreground">
-                  {f.title}
-                </h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
-                  {f.body}
-                </p>
-              </div>
+          <ul className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
+            {reviews.map((r) => (
+              <ReviewCard key={`${r.author}-${r.title}`} review={r} />
             ))}
-          </div>
-        </section>
+          </ul>
 
-        {/* Why */}
-        <section className="mx-auto mt-24 max-w-2xl text-center">
-          <div className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
-            Why it exists
-          </div>
-          <p className="mt-4 text-xl leading-relaxed text-foreground sm:text-2xl">
-            {app.why}
+          <p className="mt-6 text-xs text-ink/40">
+            Rating summary from the App Store; individual reviews shown are a curated selection.
           </p>
-          <a
-            href={app.externalUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-accent"
-          >
-            Visit {app.name.toLowerCase().replace(/\s+/g, "")}.app
-            <ExternalLink className="h-4 w-4" />
-          </a>
-        </section>
+        </div>
+      </div>
+    </section>
+  );
+}
 
-        {/* Other apps */}
-        <section className="mt-24">
-          <div className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
-            More apps
-          </div>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            {APPS.filter((a) => a.slug !== app.slug).map((other) => (
-              <Link
-                key={other.slug}
-                to="/apps/$slug"
-                params={{ slug: other.slug }}
-                className="group flex items-center gap-4 rounded-2xl border border-black/5 bg-white p-4 transition-all hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.15)]"
-              >
-                <img
-                  src={other.icon}
-                  alt=""
-                  loading="lazy"
-                  width={56}
-                  height={56}
-                  className="h-14 w-14 rounded-xl object-cover"
-                />
-                <div className="min-w-0 flex-1">
-                  <div className="truncate text-sm font-semibold text-foreground">
-                    {other.name}
-                  </div>
-                  <div className="truncate text-xs text-muted-foreground">
-                    {other.tagline}
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-      </main>
-
-      <SiteFooter />
-    </div>
+function ReviewCard({ review }: { review: AppReview }) {
+  return (
+    <li className="flex h-full flex-col rounded-2xl border border-ink/5 bg-white p-6">
+      <div className="flex items-center justify-between gap-3">
+        <Stars rating={review.rating} />
+        <span className="text-xs text-ink/40">{review.date}</span>
+      </div>
+      <h4 className="mt-3 font-display text-base font-medium text-ink">{review.title}</h4>
+      <p className="mt-2 flex-1 text-sm leading-relaxed text-ink/70">{review.body}</p>
+      <p className="mt-4 text-xs text-ink/40">
+        {review.author}
+        {review.location ? ` · ${review.location}` : ""}
+      </p>
+    </li>
   );
 }
