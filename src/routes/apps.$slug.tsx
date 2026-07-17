@@ -157,7 +157,9 @@ function AppPage() {
 
       <ReviewsSection app={app} meta={meta} />
 
-      {app.slug === "sf-popos" && <FaqSection />}
+      {app.changelog && app.changelog.length > 0 && <ChangelogSection app={app} />}
+
+      {app.faqs && app.faqs.length > 0 && <FaqSection app={app} />}
 
       <section className="mx-auto mt-24 max-w-5xl border-t border-ink/5 px-6 pt-12">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
@@ -189,6 +191,22 @@ function AppPage() {
               </a>
             )}
           </div>
+        </div>
+        <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-xs text-ink/40">
+          <Link
+            to="/legal/privacy"
+            search={{ app: app.slug }}
+            className="hover:text-ink"
+          >
+            Privacy Policy
+          </Link>
+          <Link
+            to="/legal/terms"
+            search={{ app: app.slug }}
+            className="hover:text-ink"
+          >
+            Terms of Use
+          </Link>
         </div>
       </section>
     </div>
@@ -327,30 +345,7 @@ function ReviewCard({ review }: { review: AppReview }) {
   );
 }
 
-const faqs = [
-  {
-    q: "Is this app free to use?",
-    a: "YES! The app is 100% free to use with no ads or in-app purchases.",
-  },
-  {
-    q: "Do I need an internet connection to use the app?",
-    a: "Nope! The app works totally well offline except for the map functionality.",
-  },
-  {
-    q: "Why does the app need location permission?",
-    a: "We use your location to find the nearest POPOS near you to enhance your experience.",
-  },
-  {
-    q: "What makes this app different from other San Francisco guides?",
-    a: "SF POPOS focuses specifically on San Francisco's privately owned public spaces, hidden green spaces often overlooked by other guides. Our app is designed to work offline and provides detailed information about these unique places. The app is 100% free with no ads or in-app purchases.",
-  },
-  {
-    q: "Can I share POPOS locations with friends?",
-    a: "You totally can. You can go inside of a detail and click the share icon and share it with anybody.",
-  },
-];
-
-function FaqSection() {
+function FaqSection({ app }: { app: AppEntry }) {
   return (
     <section className="mx-auto max-w-5xl px-6 pt-24">
       <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
@@ -364,13 +359,65 @@ function FaqSection() {
             Frequently Asked Questions
           </h3>
           <ul className="grid grid-cols-1 gap-8">
-            {faqs.map((faq) => (
+            {app.faqs!.map((faq) => (
               <li key={faq.q}>
                 <h4 className="font-display text-lg font-medium">{faq.q}</h4>
                 <p className="mt-2 leading-relaxed text-ink/60">{faq.a}</p>
               </li>
             ))}
           </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ChangelogSection({ app }: { app: AppEntry }) {
+  return (
+    <section className="mx-auto max-w-5xl px-6 pt-24">
+      <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+        <div>
+          <h2 className="font-display text-sm font-bold uppercase tracking-widest text-ink/40">
+            Changelog
+          </h2>
+        </div>
+        <div className="md:col-span-2">
+          <h3 className="mb-10 font-display text-2xl font-light leading-snug text-ink/80">
+            Release notes — what shipped in each version.
+          </h3>
+          <ol className="flex flex-col gap-10">
+            {app.changelog!.map((entry) => (
+              <li key={entry.version} className="border-t border-ink/5 pt-6">
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <h4 className="font-display text-xl font-medium">Version {entry.version}</h4>
+                  <span className="text-xs text-ink/40">{entry.date}</span>
+                </div>
+                <ul className="mt-4 flex flex-col gap-1.5 text-ink/70">
+                  {entry.notes.map((n) => (
+                    <li key={n} className="flex gap-2 leading-relaxed">
+                      <span aria-hidden className="text-ink/30">•</span>
+                      <span>{n}</span>
+                    </li>
+                  ))}
+                </ul>
+                {entry.behind && entry.behind.length > 0 && (
+                  <>
+                    <p className="mt-5 text-xs font-medium uppercase tracking-widest text-ink/40">
+                      Behind the scenes
+                    </p>
+                    <ul className="mt-2 flex flex-col gap-1.5 text-ink/60">
+                      {entry.behind.map((b) => (
+                        <li key={b} className="flex gap-2 text-sm leading-relaxed">
+                          <span aria-hidden className="text-ink/30">•</span>
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>

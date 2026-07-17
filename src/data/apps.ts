@@ -7,6 +7,7 @@ import sfPoposDetail from "@/assets/sfpopos-detail.png.asset.json";
 import sfPoposFavorites from "@/assets/sfpopos-favorites.png.asset.json";
 import sfPoposLogo from "@/assets/sfpopos-logo.png.asset.json";
 import nyPopsLogo from "@/assets/nypops-logo.png.asset.json";
+import shelfTrackLogo from "@/assets/shelftrack-logo.png.asset.json";
 
 export type AppPlatform = "iOS" | "Android" | "Universal";
 
@@ -17,6 +18,15 @@ export type AppReview = {
   title: string;
   body: string;
   date: string; // display string like "Mar 2025"
+};
+
+export type AppFaq = { q: string; a: string };
+
+export type AppChangelogEntry = {
+  version: string;
+  date: string;
+  notes: string[];
+  behind?: string[];
 };
 
 export type AppEntry = {
@@ -35,6 +45,8 @@ export type AppEntry = {
   screenshots?: { src: string; label: string }[];
   features: { title: string; body: string }[];
   reviews: AppReview[];
+  faqs?: AppFaq[];
+  changelog?: AppChangelogEntry[];
 };
 
 export const apps: AppEntry[] = [
@@ -94,6 +106,13 @@ export const apps: AppEntry[] = [
         body: "It's clear a real person made this. The little notes on each space feel curated, not scraped. Highly recommend.",
         date: "Nov 2025",
       },
+    ],
+    faqs: [
+      { q: "Is this app free to use?", a: "YES! The app is 100% free to use with no ads or in-app purchases." },
+      { q: "Do I need an internet connection to use the app?", a: "Nope! The app works totally well offline except for the map functionality." },
+      { q: "Why does the app need location permission?", a: "We use your location to find the nearest POPOS near you to enhance your experience." },
+      { q: "What makes this app different from other San Francisco guides?", a: "SF POPOS focuses specifically on San Francisco's privately owned public spaces, hidden green spaces often overlooked by other guides. Our app is designed to work offline and provides detailed information about these unique places. The app is 100% free with no ads or in-app purchases." },
+      { q: "Can I share POPOS locations with friends?", a: "You totally can. You can go inside of a detail and click the share icon and share it with anybody." },
     ],
   },
   {
@@ -158,6 +177,7 @@ export const apps: AppEntry[] = [
     itunesId: "6761561265",
     image: shelfTrackImage,
     imageAspect: "21/9",
+    logo: shelfTrackLogo.url,
     features: [
       { title: "Shelves your way", body: "Pantry, garage, bins, closets — name them anything. Items belong to one shelf and stay easy to find." },
       { title: "Quantities & quick adjust", body: "1 to 99,999. Tap the stepper on the item screen to bump counts without opening a full editor." },
@@ -194,6 +214,101 @@ export const apps: AppEntry[] = [
         title: "Pantry sanity restored",
         body: "SF Symbols instead of photos for pantry items is such a small touch and it makes the whole app feel considered.",
         date: "Nov 2025",
+      },
+    ],
+    faqs: [
+      { q: "What is Shelf Track for?", a: "Home inventory: shelves, items, quantities, and optional photos or symbols — with search, filters, sort, and built-in ordering lists." },
+      { q: "Do I need an account?", a: "Yes. Sign in with Apple or Google. Your inventory is tied to your user account so it can sync across your devices." },
+      { q: "Does it sync across devices?", a: "Yes — when you use the same account on each device. Data is stored securely in the cloud with a fast local cache for offline browsing." },
+      { q: "Can I use it offline?", a: "You can browse and edit items already on your device. Photo uploads and live multi-device updates need an internet connection." },
+      { q: "Can I delete my account and data?", a: "Yes. Account deletion in Settings re-authenticates you, then wipes your cloud data, photos, auth record, and local cache." },
+    ],
+    changelog: [
+      {
+        version: "1.7",
+        date: "June 15, 2026",
+        notes: [
+          "Fixed an issue where account deletion could fail",
+          "Fixed internet connectivity",
+          "Fixed MacBook crash",
+        ],
+        behind: ["Small fixes you might not notice, but you'd notice if they weren't fixed."],
+      },
+      {
+        version: "1.6",
+        date: "June 10, 2026",
+        notes: [
+          "Fixed an issue where account deletion could fail",
+          "Clear all inventory data without deleting your account",
+          "Minor bugs and fixes",
+        ],
+        behind: ["Small fixes you might not notice, but you'd notice if they weren't fixed."],
+      },
+      {
+        version: "1.5",
+        date: "June 3, 2026",
+        notes: ["Minor bugs and fixes"],
+        behind: ["Small fixes you might not notice, but you'd notice if they weren't fixed."],
+      },
+      {
+        version: "1.4",
+        date: "June 4, 2026",
+        notes: [
+          "New dedicated out-of-stock section",
+          "Add missing items with one-tap",
+          "Filter out-of-stock items",
+          "Importing and exporting",
+          "Updated toast",
+          "Updated support content",
+        ],
+        behind: ["Small fixes you might not notice, but you'd notice that they weren't fixed."],
+      },
+      {
+        version: "1.3",
+        date: "June 2, 2026",
+        notes: [
+          "Leave feedback from the home screen (next to settings)",
+          "Tap quantity on an inventory item to edit it quickly",
+          "Tap quantity when viewing or editing an item to type a new amount",
+          "Hold on a shelf or product name to rename or delete it",
+          "Clearer \u201Cchanges saved\u201D confirmation when your changes sync",
+          "Updated support contact",
+        ],
+        behind: ["Small fixes you might not notice, but you'd notice if they weren't fixed."],
+      },
+      {
+        version: "1.2",
+        date: "June 1, 2026",
+        notes: [
+          "Offline notice when you're not connected (you can dismiss it)",
+          "\u201CReconnected\u201D toast when you're back online",
+          "Sync now in settings for manual cloud sync",
+          "Out-of-stock items easier to spot in your inventory",
+          "Zero quantity allowed on items",
+          "Updated inventory layout with search and add at the bottom",
+          "Choose your home screen title in settings",
+          "Fixed choosing a profile photo from your library",
+          "Smoother admin user management",
+        ],
+        behind: ["Small fixes you might not notice, but you'd notice if they weren't fixed."],
+      },
+      {
+        version: "1.1",
+        date: "May 21, 2026",
+        notes: [
+          "Updated settings and account",
+          "Improved inventory lists and ordering",
+          "Easier shelf and product name management",
+          "Safer editing when adding or changing items",
+          "Updated external links",
+          "Cloud sync status at the top",
+        ],
+        behind: ["Small fixes you might not notice, but you'd notice if they weren't fixed."],
+      },
+      {
+        version: "1.0",
+        date: "April 9, 2026",
+        notes: ["Initial release."],
       },
     ],
   },
