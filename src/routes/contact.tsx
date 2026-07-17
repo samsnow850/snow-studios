@@ -129,43 +129,49 @@ function ContactPage() {
           </div>
         ) : (
           <form onSubmit={onSubmit} className="mt-12 space-y-6">
-            <Field label="Which app is this about?">
-              <div className="flex flex-wrap gap-2">
-                {APP_OPTIONS.map((a) => (
-                  <button
-                    key={a.slug}
-                    type="button"
-                    onClick={() => setApp(a.slug)}
-                    className={`rounded-full border px-4 py-2 text-sm transition ${
-                      app === a.slug
-                        ? "border-ink bg-ink text-canvas"
-                        : "border-ink/15 text-ink/70 hover:bg-ink/5"
-                    }`}
+            <div className="grid gap-6 md:grid-cols-2">
+              <Field label="Which app is this about?">
+                <div className="relative">
+                  <select
+                    value={app}
+                    onChange={(e) => setApp(e.target.value)}
+                    className="w-full appearance-none rounded-xl border border-ink/15 bg-stone px-4 py-3 pr-10 text-sm outline-none focus:border-ink/40"
                   >
-                    {a.name}
-                  </button>
-                ))}
-              </div>
-            </Field>
+                    {APP_OPTIONS.map((a) => (
+                      <option key={a.slug} value={a.slug}>
+                        {a.name}
+                      </option>
+                    ))}
+                  </select>
+                  <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-ink/50">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </span>
+                </div>
+              </Field>
 
-            <Field label="What kind of message?">
-              <div className="flex flex-wrap gap-2">
-                {CATEGORIES.map((c) => (
-                  <button
-                    key={c.id}
-                    type="button"
-                    onClick={() => setCategory(c.id)}
-                    className={`rounded-full border px-4 py-2 text-sm transition ${
-                      category === c.id
-                        ? "border-ink bg-ink text-canvas"
-                        : "border-ink/15 text-ink/70 hover:bg-ink/5"
-                    }`}
+              <Field label="What kind of message?">
+                <div className="relative">
+                  <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value as (typeof CATEGORIES)[number]["id"])}
+                    className="w-full appearance-none rounded-xl border border-ink/15 bg-stone px-4 py-3 pr-10 text-sm outline-none focus:border-ink/40"
                   >
-                    {c.label}
-                  </button>
-                ))}
-              </div>
-            </Field>
+                    {CATEGORIES.map((c) => (
+                      <option key={c.id} value={c.id}>
+                        {c.label}
+                      </option>
+                    ))}
+                  </select>
+                  <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-ink/50">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </span>
+                </div>
+              </Field>
+            </div>
 
             <div className="grid gap-6 md:grid-cols-2">
               <Field label="Your name" error={errors.name}>
