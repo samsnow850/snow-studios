@@ -170,6 +170,7 @@ export const apps: AppEntry[] = [
     itunesId: "6761561265",
     image: shelfTrackImage,
     imageAspect: "21/9",
+    logo: shelfTrackLogo.url,
     features: [
       { title: "Shelves your way", body: "Pantry, garage, bins, closets — name them anything. Items belong to one shelf and stay easy to find." },
       { title: "Quantities & quick adjust", body: "1 to 99,999. Tap the stepper on the item screen to bump counts without opening a full editor." },
