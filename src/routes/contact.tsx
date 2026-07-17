@@ -205,29 +205,6 @@ function ContactPage() {
               </p>
             </Field>
 
-            <Field label="Attach screenshots (optional, up to 5 · 10MB each)">
-              <input
-                type="file"
-                accept="image/*"
-                multiple
-                onChange={(e) => onFiles(e.target.files)}
-                className="block w-full text-sm text-ink/70 file:mr-4 file:rounded-full file:border-0 file:bg-ink file:px-4 file:py-2 file:text-sm file:text-canvas hover:file:bg-ink/80"
-              />
-              {files.length > 0 && (
-                <ul className="mt-3 space-y-1 text-xs text-ink/60">
-                  {files.map((f) => (
-                    <li key={f.name}>
-                      · {f.name} — {Math.round(f.size / 1024)} KB
-                    </li>
-                  ))}
-                </ul>
-              )}
-              <p className="mt-2 text-[11px] text-ink/40">
-                Your mail app will open with the message pre-filled — drag your
-                screenshots into it before sending.
-              </p>
-            </Field>
-
             <div className="flex flex-col items-start gap-3 pt-2 md:flex-row md:items-center md:justify-between">
               <p className="text-xs text-ink/50">
                 Prefer email? Write me at{" "}
