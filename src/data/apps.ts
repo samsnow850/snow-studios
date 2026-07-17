@@ -107,6 +107,13 @@ export const apps: AppEntry[] = [
         date: "Nov 2025",
       },
     ],
+    faqs: [
+      { q: "Is this app free to use?", a: "YES! The app is 100% free to use with no ads or in-app purchases." },
+      { q: "Do I need an internet connection to use the app?", a: "Nope! The app works totally well offline except for the map functionality." },
+      { q: "Why does the app need location permission?", a: "We use your location to find the nearest POPOS near you to enhance your experience." },
+      { q: "What makes this app different from other San Francisco guides?", a: "SF POPOS focuses specifically on San Francisco's privately owned public spaces, hidden green spaces often overlooked by other guides. Our app is designed to work offline and provides detailed information about these unique places. The app is 100% free with no ads or in-app purchases." },
+      { q: "Can I share POPOS locations with friends?", a: "You totally can. You can go inside of a detail and click the share icon and share it with anybody." },
+    ],
   },
   {
     slug: "ny-pops",
