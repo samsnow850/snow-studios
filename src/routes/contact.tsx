@@ -35,7 +35,6 @@ function ContactPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [files, setFiles] = useState<File[]>([]);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sent, setSent] = useState(false);
 
@@ -65,12 +64,6 @@ function ContactPage() {
     ev.preventDefault();
     if (!validate()) return;
 
-    const attachmentNote = files.length
-      ? `\n\nAttachments (please attach in your mail client after it opens):\n${files
-          .map((f) => `- ${f.name} (${Math.round(f.size / 1024)} KB)`)
-          .join("\n")}`
-      : "";
-
     const body = [
       `App: ${appLabel}`,
       `Category: ${categoryLabel}`,
@@ -78,7 +71,6 @@ function ContactPage() {
       `Email: ${email}`,
       "",
       message,
-      attachmentNote,
     ].join("\n");
 
     const subjectLine = `[${appLabel} · ${categoryLabel}] ${subject}`;
@@ -87,12 +79,6 @@ function ContactPage() {
     )}&body=${encodeURIComponent(body)}`;
     window.location.href = href;
     setSent(true);
-  };
-
-  const onFiles = (list: FileList | null) => {
-    if (!list) return;
-    const next = Array.from(list).filter((f) => f.size <= 10 * 1024 * 1024).slice(0, 5);
-    setFiles(next);
   };
 
   return (
@@ -216,29 +202,6 @@ function ContactPage() {
               />
               <p className="mt-1 text-right text-[11px] text-ink/40">
                 {message.length} / 5000
-              </p>
-            </Field>
-
-            <Field label="Attach screenshots (optional, up to 5 · 10MB each)">
-              <input
-                type="file"
-                accept="image/*"
-                multiple
-                onChange={(e) => onFiles(e.target.files)}
-                className="block w-full text-sm text-ink/70 file:mr-4 file:rounded-full file:border-0 file:bg-ink file:px-4 file:py-2 file:text-sm file:text-canvas hover:file:bg-ink/80"
-              />
-              {files.length > 0 && (
-                <ul className="mt-3 space-y-1 text-xs text-ink/60">
-                  {files.map((f) => (
-                    <li key={f.name}>
-                      · {f.name} — {Math.round(f.size / 1024)} KB
-                    </li>
-                  ))}
-                </ul>
-              )}
-              <p className="mt-2 text-[11px] text-ink/40">
-                Your mail app will open with the message pre-filled — drag your
-                screenshots into it before sending.
               </p>
             </Field>
 
