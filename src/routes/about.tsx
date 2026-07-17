@@ -37,17 +37,8 @@ function About() {
             <h2 className="mb-4 font-display text-sm font-bold uppercase tracking-widest text-ink/40">
               Elsewhere
             </h2>
+            <StoreBadges appStore="https://apps.apple.com/us/developer/samuel-snow/id1620253929" className="mb-6" />
             <ul className="space-y-3">
-              <li>
-                <a
-                  href="https://apps.apple.com/us/developer/samuel-snow/id1620253929"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-lg transition-colors hover:text-[var(--color-accent-blue)]"
-                >
-                  App Store
-                </a>
-              </li>
               <li>
                 <a
                   href="mailto:hello@example.com"
