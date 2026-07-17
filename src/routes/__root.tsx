@@ -76,24 +76,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Samuel Snow — Indie apps for the curious" },
+      { title: "Snow Studios" },
       {
         name: "description",
         content:
           "I'm a developer building useful, polished apps that solve real problems. Home of SF POPOS, NY POPS, and Shelf Track.",
       },
-      { property: "og:title", content: "Samuel Snow — Indie apps for the curious" },
+      { property: "og:title", content: "Snow Studios" },
       {
         property: "og:description",
         content:
-          "Useful, polished mobile apps for urban exploration and personal organization.",
+          "I'm a developer building useful, polished apps that solve real problems. Home of SF POPOS, NY POPS, and Shelf Track.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Snow Studios" },
+      { name: "twitter:description", content: "I'm a developer building useful, polished apps that solve real problems. Home of SF POPOS, NY POPS, and Shelf Track." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/21785d91-25e2-4b8d-92ab-11d3f85974ef" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/21785d91-25e2-4b8d-92ab-11d3f85974ef" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
