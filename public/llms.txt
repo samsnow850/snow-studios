@@ -1,0 +1,20 @@
+# Snow Studios
+
+> The portfolio site for Samuel Snow's independent apps — SF POPOS, NY POPS, and Shelf Track.
+
+Snow Studios is a small independent app studio. The site introduces the developer and showcases a collection of mobile apps built with thoughtful design and a focus on everyday discovery, city exploration, and personal organization.
+
+## Pages
+
+- [Home](/): Overview of the studio and the app portfolio.
+- [About](/about): About Samuel Snow, the independent developer behind the apps.
+- [Contact](/contact): Send feedback, report bugs, or request features.
+- [SF POPOS](/apps/sf-popos): A field guide to San Francisco's privately-owned public open spaces.
+- [NY POPS](/apps/ny-pops): A guide to New York's privately-owned public spaces.
+- [Shelf Track](/apps/shelf-track): A personal inventory and organization app.
+- [Privacy Policy](/legal/privacy): Privacy policy for all Snow Studios apps.
+- [Terms of Use](/legal/terms): Terms of use for all Snow Studios apps.
+
+## Optional
+
+- [Sitemap](/sitemap.xml): Machine-readable list of public pages.
