@@ -213,7 +213,7 @@ function Index() {
             </a>
             <Link
               to="/about"
-              className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white px-6 py-3 text-sm font-medium text-ink transition-colors hover:bg-stone"
+              className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-stone px-6 py-3 text-sm font-medium text-ink transition-colors hover:bg-stone"
             >
               About Snow Studios
             </Link>

@@ -110,7 +110,7 @@ function ContactPage() {
         </p>
 
         {sent ? (
-          <div className="mt-12 rounded-2xl border border-ink/10 bg-white p-8 shadow-sm">
+          <div className="mt-12 rounded-2xl border border-ink/10 bg-stone p-8 shadow-sm">
             <p className="font-display text-2xl">Your mail app should be open.</p>
             <p className="mt-3 text-sm text-ink/60">
               If nothing happened, email me directly at{" "}
@@ -173,7 +173,7 @@ function ContactPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   maxLength={100}
-                  className="w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm outline-none focus:border-ink/40"
+                  className="w-full rounded-xl border border-ink/15 bg-stone px-4 py-3 text-sm outline-none focus:border-ink/40"
                   placeholder="Jane Appleseed"
                 />
               </Field>
@@ -183,7 +183,7 @@ function ContactPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   maxLength={255}
-                  className="w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm outline-none focus:border-ink/40"
+                  className="w-full rounded-xl border border-ink/15 bg-stone px-4 py-3 text-sm outline-none focus:border-ink/40"
                   placeholder="you@example.com"
                 />
               </Field>
@@ -194,7 +194,7 @@ function ContactPage() {
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
                 maxLength={140}
-                className="w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm outline-none focus:border-ink/40"
+                className="w-full rounded-xl border border-ink/15 bg-stone px-4 py-3 text-sm outline-none focus:border-ink/40"
                 placeholder="Short summary"
               />
             </Field>
@@ -205,7 +205,7 @@ function ContactPage() {
                 onChange={(e) => setMessage(e.target.value)}
                 maxLength={5000}
                 rows={8}
-                className="w-full resize-y rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm outline-none focus:border-ink/40"
+                className="w-full resize-y rounded-xl border border-ink/15 bg-stone px-4 py-3 text-sm outline-none focus:border-ink/40"
                 placeholder="Tell me what's going on…"
               />
               <p className="mt-1 text-right text-[11px] text-ink/40">

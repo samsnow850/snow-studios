@@ -37,7 +37,7 @@ export function LegalPage({ app, kind }: { app: AppEntry["slug"]; kind: LegalKin
                 className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
                   active
                     ? "border-ink bg-ink text-white"
-                    : "border-ink/10 bg-white text-ink/70 hover:border-ink/30 hover:text-ink"
+                    : "border-ink/10 bg-stone text-ink/70 hover:border-ink/30 hover:text-ink"
                 }`}
               >
                 {a.logo && (
@@ -53,7 +53,7 @@ export function LegalPage({ app, kind }: { app: AppEntry["slug"]; kind: LegalKin
       </header>
 
       <main className="mx-auto max-w-3xl px-6">
-        <p className="mb-12 rounded-2xl border border-ink/5 bg-white px-5 py-4 text-sm text-ink/70">
+        <p className="mb-12 rounded-2xl border border-ink/5 bg-stone px-5 py-4 text-sm text-ink/70">
           <strong className="font-medium text-ink">Across every app,</strong>{" "}
           we don't collect or sell any of your data. We don't share it with advertisers, data brokers, or third parties.
         </p>
