@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { StoreBadges } from "@/components/StoreBadges";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
