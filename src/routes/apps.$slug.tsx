@@ -157,6 +157,8 @@ function AppPage() {
 
       <ReviewsSection app={app} meta={meta} />
 
+      {app.slug === "sf-popos" && <FaqSection />}
+
       <section className="mx-auto mt-24 max-w-5xl border-t border-ink/5 px-6 pt-12">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div>
