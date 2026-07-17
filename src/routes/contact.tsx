@@ -64,12 +64,6 @@ function ContactPage() {
     ev.preventDefault();
     if (!validate()) return;
 
-    const attachmentNote = files.length
-      ? `\n\nAttachments (please attach in your mail client after it opens):\n${files
-          .map((f) => `- ${f.name} (${Math.round(f.size / 1024)} KB)`)
-          .join("\n")}`
-      : "";
-
     const body = [
       `App: ${appLabel}`,
       `Category: ${categoryLabel}`,
@@ -77,7 +71,6 @@ function ContactPage() {
       `Email: ${email}`,
       "",
       message,
-      attachmentNote,
     ].join("\n");
 
     const subjectLine = `[${appLabel} · ${categoryLabel}] ${subject}`;
@@ -86,12 +79,6 @@ function ContactPage() {
     )}&body=${encodeURIComponent(body)}`;
     window.location.href = href;
     setSent(true);
-  };
-
-  const onFiles = (list: FileList | null) => {
-    if (!list) return;
-    const next = Array.from(list).filter((f) => f.size <= 10 * 1024 * 1024).slice(0, 5);
-    setFiles(next);
   };
 
   return (
