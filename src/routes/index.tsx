@@ -30,6 +30,9 @@ function Index() {
       <main className="mx-auto grid max-w-5xl grid-cols-1 gap-12 px-6 md:grid-cols-2">
         {apps.map((app, i) => {
           const isWide = app.imageAspect === "21/9";
+          const homeShot = app.screenshots?.[0]?.src;
+          const displaySrc = homeShot ?? app.image;
+          const useContain = Boolean(homeShot) && !isWide;
           return (
             <Link
               key={app.slug}
@@ -39,12 +42,12 @@ function Index() {
             >
               <div className="relative overflow-hidden rounded-3xl bg-stone outline outline-1 -outline-offset-1 outline-black/5">
                 <img
-                  src={app.image}
+                  src={displaySrc}
                   alt={`${app.name} preview`}
                   loading={i === 0 ? "eager" : "lazy"}
-                  className={`w-full object-cover transition-transform duration-500 group-hover:scale-105 ${
-                    isWide ? "aspect-[21/9]" : "aspect-[4/5]"
-                  }`}
+                  className={`w-full transition-transform duration-500 group-hover:scale-105 ${
+                    isWide ? "aspect-[21/9] object-cover" : "aspect-[4/5]"
+                  } ${useContain ? "object-contain p-8" : "object-cover"}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
               </div>
