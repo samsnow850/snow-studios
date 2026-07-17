@@ -82,28 +82,7 @@ function AppPage() {
         )}
 
 
-        <div className="mt-10 flex flex-wrap gap-3">
-          {app.appStore && (
-            <a
-              href={app.appStore}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-ink/85"
-            >
-              Download on the App Store
-            </a>
-          )}
-          {app.playStore && (
-            <a
-              href={app.playStore}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-ink/10 bg-white px-6 py-3 text-sm font-medium text-ink transition-colors hover:bg-stone"
-            >
-              Get it on Google Play
-            </a>
-          )}
-        </div>
+        <StoreBadges appStore={app.appStore} playStore={app.playStore} className="mt-10" />
       </header>
 
       <section className="mx-auto max-w-5xl px-6">
@@ -169,28 +148,7 @@ function AppPage() {
             </h3>
             <p className="mt-2 text-ink/60">{app.platforms.join(" · ")}</p>
           </div>
-          <div className="flex flex-wrap gap-3">
-            {app.appStore && (
-              <a
-                href={app.appStore}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-ink/85"
-              >
-                App Store
-              </a>
-            )}
-            {app.playStore && (
-              <a
-                href={app.playStore}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-ink/10 bg-white px-6 py-3 text-sm font-medium text-ink transition-colors hover:bg-stone"
-              >
-                Google Play
-              </a>
-            )}
-          </div>
+          <StoreBadges appStore={app.appStore} playStore={app.playStore} />
         </div>
         <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-xs text-ink/40">
           <Link
