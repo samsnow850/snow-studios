@@ -26,7 +26,7 @@ const APP_OPTIONS = [
   ...apps.map((a) => ({ slug: a.slug, name: a.name })),
 ];
 
-const CONTACT_EMAIL = "samuel@snowstudios.app";
+const CONTACT_EMAIL = "support@snowstudios.app";
 
 function ContactPage() {
   const [app, setApp] = useState("general");
