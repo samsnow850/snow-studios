@@ -67,13 +67,19 @@ function Index() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
           <div className="md:col-span-2">
             <h3 className="mb-4 font-display text-sm font-bold uppercase tracking-widest text-ink/40">
-              About
+              About me
             </h3>
-            <p className="text-2xl font-light leading-snug text-ink/80">
-              I'm a developer who enjoys building useful, polished apps that solve real
-              problems. I focus on creating simple, thoughtful experiences and turning
-              ideas into products people can actually use.
-            </p>
+            <div className="space-y-6 text-2xl font-light leading-snug text-ink/80">
+              <p>
+                Hi, I'm Samuel, the creator of SF POPOS. I've always been inspired by the hidden corners of San Francisco — those little parks, plazas, and terraces that most people walk by without noticing. This project is my way of helping others discover and enjoy these unique spaces.
+              </p>
+              <p>
+                I built SF POPOS to combine two passions of mine: thoughtful design and a love for the city. My goal is to make it easy, fun, and beautiful to explore these spots, whether you're looking for a quiet lunch break retreat, a hidden rooftop view, or just a new place to experience the city.
+              </p>
+              <p>
+                Thanks for stopping by — I hope SF POPOS helps you uncover your next favorite hidden gem in San Francisco.
+              </p>
+            </div>
           </div>
           <div>
             <h3 className="mb-4 font-display text-sm font-bold uppercase tracking-widest text-ink/40">
