@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { apps } from "@/data/apps";
 import sfSkyline from "@/assets/sf-skyline.jpg.asset.json";
 import nySkyline from "@/assets/ny-skyline.jpg.asset.json";
+import samuelPhoto from "@/assets/samuel-snow.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -14,7 +15,7 @@ const heroImages: Record<string, string> = {
 
 function Index() {
   return (
-    <div className="min-h-screen bg-canvas pb-40 text-ink">
+    <div className="bg-canvas pb-24 text-ink">
       {/* Hero */}
       <header className="mx-auto max-w-6xl px-6 pt-28 pb-16 md:pt-36 md:pb-20">
         <div className="flex items-baseline justify-between gap-8">
@@ -135,6 +136,89 @@ function Index() {
               </div>
             </Link>
           ))}
+
+        {/* Stats strip */}
+        <section className="mt-24 border-y border-ink/10 py-14">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            {[
+              { k: "3", v: "Apps shipped" },
+              { k: "2", v: "Cities mapped" },
+              { k: "iOS / Android", v: "Platforms" },
+              { k: "2025", v: "Est." },
+            ].map((s) => (
+              <div key={s.v}>
+                <p className="font-display text-3xl font-light md:text-4xl">{s.k}</p>
+                <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-ink/40">{s.v}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Philosophy */}
+        <section className="mt-24 grid gap-12 md:grid-cols-3">
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-ink/40">Philosophy</p>
+            <h2 className="mt-4 font-display text-3xl font-light leading-tight md:text-4xl">
+              Small tools, made with <span className="italic font-medium">care</span>.
+            </h2>
+          </div>
+          {[
+            { t: "Quiet by default", b: "No ads, no tracking, no dark patterns. Just the app doing its job." },
+            { t: "Specific over general", b: "Each app solves one real problem for a real place or routine." },
+            { t: "Made to last", b: "Ongoing updates, thoughtful details, and a design that ages well." },
+          ].map((c) => (
+            <div key={c.t} className="border-t border-ink/10 pt-6 md:col-span-1 md:border-t-0 md:border-l md:pt-0 md:pl-6">
+              <h3 className="font-display text-lg font-medium">{c.t}</h3>
+              <p className="mt-2 text-sm font-light leading-relaxed text-ink/60">{c.b}</p>
+            </div>
+          ))}
+        </section>
+
+        {/* About preview */}
+        <section className="mt-24 grid gap-10 rounded-3xl bg-stone p-8 md:grid-cols-[1fr_1.2fr] md:p-12">
+          <div className="overflow-hidden rounded-2xl">
+            <img src={samuelPhoto.url} alt="Samuel Snow" className="h-full w-full object-cover" />
+          </div>
+          <div className="flex flex-col justify-center">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-ink/40">About the maker</p>
+            <h2 className="mt-4 font-display text-3xl font-light leading-tight md:text-4xl">
+              Hi, I'm <span className="italic font-medium">Samuel</span>.
+            </h2>
+            <p className="mt-4 max-w-md text-base font-light leading-relaxed text-ink/70">
+              I build small, thoughtful apps inspired by the places and routines I care about — from hidden parks in San Francisco to keeping track of what's in the pantry.
+            </p>
+            <Link
+              to="/about"
+              className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-ink/90"
+            >
+              Read more <span aria-hidden>→</span>
+            </Link>
+          </div>
+        </section>
+
+        {/* Get in touch */}
+        <section className="mt-24 text-center">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-ink/40">Get in touch</p>
+          <h2 className="mx-auto mt-4 max-w-2xl font-display text-4xl font-light leading-tight md:text-5xl">
+            Have an idea, feedback, or just want to say hi?
+          </h2>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <a
+              href="https://www.instagram.com/samsnow850"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-ink/90"
+            >
+              Instagram
+            </a>
+            <Link
+              to="/about"
+              className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white px-6 py-3 text-sm font-medium text-ink transition-colors hover:bg-stone"
+            >
+              About Snow Studios
+            </Link>
+          </div>
+        </section>
       </main>
     </div>
   );
