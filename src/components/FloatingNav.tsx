@@ -1,10 +1,16 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { apps } from "@/data/apps";
 
 export function FloatingNav() {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isHome = pathname === "/";
+  const isAbout = pathname === "/about";
+  const isApps = pathname.startsWith("/apps");
+
+  const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   useEffect(() => {
     function onDoc(e: MouseEvent) {
@@ -20,9 +26,15 @@ export function FloatingNav() {
       <div className="flex items-center gap-1 rounded-full border border-white/10 bg-[#1a1a1a]/95 px-2 py-2 shadow-2xl backdrop-blur-md">
         <Link
           to="/"
-          className="rounded-full px-4 py-1.5 text-sm font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white [&.active]:text-white"
-          activeOptions={{ exact: true }}
-          activeProps={{ className: "bg-white/10 text-white" }}
+          onClick={(e) => {
+            if (isHome) {
+              e.preventDefault();
+              scrollTop();
+            }
+          }}
+          className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors hover:bg-white/5 hover:text-white ${
+            isHome ? "bg-white/10 text-white" : "text-white/80"
+          }`}
         >
           Home
         </Link>
@@ -31,7 +43,9 @@ export function FloatingNav() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white"
+            className={`flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium transition-colors hover:bg-white/5 hover:text-white ${
+              isApps ? "bg-white/10 text-white" : "text-white/80"
+            }`}
             aria-haspopup="menu"
             aria-expanded={open}
           >
@@ -75,9 +89,16 @@ export function FloatingNav() {
         </div>
 
         <Link
-          to="/"
-          hash="about"
-          className="rounded-full px-4 py-1.5 text-sm font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white"
+          to="/about"
+          onClick={(e) => {
+            if (isAbout) {
+              e.preventDefault();
+              scrollTop();
+            }
+          }}
+          className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors hover:bg-white/5 hover:text-white ${
+            isAbout ? "bg-white/10 text-white" : "text-white/80"
+          }`}
         >
           About
         </Link>
