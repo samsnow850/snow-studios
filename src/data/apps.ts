@@ -8,6 +8,10 @@ import sfPoposFavorites from "@/assets/sfpopos-favorites.png.asset.json";
 import sfPoposLogo from "@/assets/sfpopos-logo.png.asset.json";
 import nyPopsLogo from "@/assets/nypops-logo.png.asset.json";
 import shelfTrackLogo from "@/assets/shelftrack-logo.png.asset.json";
+import nyPopsHome from "@/assets/nypops-homepage.png.asset.json";
+import nyPopsMap from "@/assets/nypops-map.png.asset.json";
+import nyPopsFavorites from "@/assets/nypops-favorites.png.asset.json";
+import nyPopsDetail from "@/assets/nypops-detail.png.asset.json";
 
 export type AppPlatform = "iOS" | "Android" | "Universal";
 
@@ -128,6 +132,12 @@ export const apps: AppEntry[] = [
     image: nyPopsImage,
     imageAspect: "4/5",
     logo: nyPopsLogo.url,
+    screenshots: [
+      { src: nyPopsHome.url, label: "Browse" },
+      { src: nyPopsMap.url, label: "Map" },
+      { src: nyPopsDetail.url, label: "Details" },
+      { src: nyPopsFavorites.url, label: "Favorites" },
+    ],
     features: [
       { title: "Hidden places, mapped", body: "Hundreds of public spaces across Manhattan and the boroughs." },
       { title: "Clean, free, quiet", body: "Filter for the qualities that matter when you need a break." },
