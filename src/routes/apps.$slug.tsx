@@ -68,13 +68,13 @@ function AppPage() {
         {(meta.version || updated) && (
           <div className="mt-8 flex flex-wrap gap-2">
             {meta.version && (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-white px-3 py-1 text-xs font-medium text-ink/70">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-stone px-3 py-1 text-xs font-medium text-ink/70">
                 <span className="text-ink/40">Version</span>
                 <span className="tabular-nums">{meta.version}</span>
               </span>
             )}
             {updated && (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-white px-3 py-1 text-xs font-medium text-ink/70">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-stone px-3 py-1 text-xs font-medium text-ink/70">
                 <span className="text-ink/40">Updated</span>
                 <span>{updated}</span>
               </span>
@@ -244,7 +244,7 @@ function ReviewsSection({ app, meta }: { app: AppEntry; meta: AppMeta }) {
         </div>
 
         <div className="md:col-span-2">
-          <div className="grid grid-cols-1 gap-8 rounded-3xl border border-ink/5 bg-white p-8 sm:grid-cols-[auto_1fr] sm:items-center">
+          <div className="grid grid-cols-1 gap-8 rounded-3xl border border-ink/5 bg-stone p-8 sm:grid-cols-[auto_1fr] sm:items-center">
             <div className="flex flex-col items-start">
               <div className="font-display text-5xl font-light leading-none text-ink">
                 {shownRating.toFixed(1)}
@@ -289,7 +289,7 @@ function ReviewsSection({ app, meta }: { app: AppEntry; meta: AppMeta }) {
 
 function ReviewCard({ review }: { review: AppReview }) {
   return (
-    <li className="flex h-full flex-col rounded-2xl border border-ink/5 bg-white p-6">
+    <li className="flex h-full flex-col rounded-2xl border border-ink/5 bg-stone p-6">
       <div className="flex items-center justify-between gap-3">
         <Stars rating={review.rating} />
         <span className="text-xs text-ink/40">{review.date}</span>
