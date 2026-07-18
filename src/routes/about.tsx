@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { StoreBadges } from "@/components/StoreBadges";
 import sailingPhoto from "@/assets/samuel-snow.jpg.asset.json";
+import instagramLogo from "@/assets/instagram-logo.png.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -63,9 +64,15 @@ function About() {
                   href="https://www.instagram.com/samsnow850"
                   target="_blank"
                   rel="noreferrer"
-                  className="text-lg text-ink/80 transition-colors hover:text-ink"
+                  aria-label="Instagram"
+                  className="inline-flex items-center gap-2 text-ink/80 transition-opacity hover:opacity-80"
                 >
-                  Instagram
+                  <img
+                    src={instagramLogo.url}
+                    alt="Instagram"
+                    className="h-8 w-8"
+                    loading="lazy"
+                  />
                 </a>
               </li>
             </ul>
