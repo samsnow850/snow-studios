@@ -189,7 +189,7 @@ function Index() {
             </p>
             <Link
               to="/about"
-              className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-ink/90"
+              className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-canvas transition-colors hover:bg-ink/90"
             >
               Read more <span aria-hidden>→</span>
             </Link>
@@ -207,7 +207,7 @@ function Index() {
               href="https://www.instagram.com/samsnow850"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-ink/90"
+              className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-canvas transition-colors hover:bg-ink/90"
             >
               Instagram
             </a>
