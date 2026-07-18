@@ -9,13 +9,6 @@ export function LegalPage({ app, kind }: { app: AppEntry["slug"]; kind: LegalKin
   return (
     <div className="min-h-screen bg-canvas pb-40 text-ink">
       <header className="mx-auto max-w-3xl px-6 pt-28 pb-10 md:pt-36">
-        <Link
-          to="/"
-          className="mb-10 inline-flex items-center gap-2 text-sm font-medium text-ink/50 transition-colors hover:text-ink"
-        >
-          <span aria-hidden>←</span> Home
-        </Link>
-
         <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-ink/40">
           Legal · {current.name}
         </p>
@@ -36,7 +29,7 @@ export function LegalPage({ app, kind }: { app: AppEntry["slug"]; kind: LegalKin
                 aria-selected={active}
                 className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
                   active
-                    ? "border-ink bg-ink text-white"
+                    ? "border-ink bg-ink text-canvas"
                     : "border-ink/10 bg-stone text-ink/70 hover:border-ink/30 hover:text-ink"
                 }`}
               >
