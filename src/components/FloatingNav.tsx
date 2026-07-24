@@ -63,7 +63,12 @@ export function FloatingNav() {
   }, []);
 
   return (
-    <nav className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2">
+    <motion.nav
+      initial={{ y: 40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+      className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2"
+    >
       <div className="flex items-center gap-1 rounded-full border border-white/10 bg-[#1a1a1a]/95 px-2 py-2 shadow-2xl backdrop-blur-md">
         <Link
           to="/"
@@ -87,39 +92,45 @@ export function FloatingNav() {
             <span className="block h-1.5 w-1.5 rounded-full bg-[var(--color-accent-blue)]" />
           </NavPill>
 
-          {open && (
-            <div
-              role="menu"
-              className="absolute bottom-full left-1/2 mb-4 w-64 -translate-x-1/2 rounded-2xl border border-white/10 bg-[#1a1a1a] p-2 shadow-xl"
-            >
-              {apps.map((a) => (
-                <Link
-                  key={a.slug}
-                  to="/apps/$slug"
-                  params={{ slug: a.slug }}
-                  onClick={() => setOpen(false)}
-                  className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-white/70 transition-colors hover:bg-white/5 hover:text-white"
-                  role="menuitem"
-                >
-                  {a.logo ? (
-                    <img
-                      src={a.logo}
-                      alt=""
-                      className="h-9 w-9 flex-shrink-0 rounded-lg object-cover"
-                    />
-                  ) : (
-                    <div className="h-9 w-9 flex-shrink-0 rounded-lg bg-white/5" />
-                  )}
-                  <div className="flex flex-col">
-                    <span className="text-sm font-medium">{a.name}</span>
-                    <span className="mt-0.5 text-[11px] text-white/40">
-                      {a.platforms.join(" + ")}
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
+          <AnimatePresence>
+            {open && (
+              <motion.div
+                initial={{ opacity: 0, y: 12, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 12, scale: 0.96 }}
+                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                role="menu"
+                className="absolute bottom-full left-1/2 mb-4 w-64 -translate-x-1/2 rounded-2xl border border-white/10 bg-[#1a1a1a] p-2 shadow-xl"
+              >
+                {apps.map((a) => (
+                  <Link
+                    key={a.slug}
+                    to="/apps/$slug"
+                    params={{ slug: a.slug }}
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-white/70 transition-colors hover:bg-white/5 hover:text-white"
+                    role="menuitem"
+                  >
+                    {a.logo ? (
+                      <img
+                        src={a.logo}
+                        alt=""
+                        className="h-9 w-9 flex-shrink-0 rounded-lg object-cover"
+                      />
+                    ) : (
+                      <div className="h-9 w-9 flex-shrink-0 rounded-lg bg-white/5" />
+                    )}
+                    <div className="flex flex-col">
+                      <span className="text-sm font-medium">{a.name}</span>
+                      <span className="mt-0.5 text-[11px] text-white/40">
+                        {a.platforms.join(" + ")}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         <Link
@@ -146,6 +157,6 @@ export function FloatingNav() {
           <NavPill active={isContact}>Contact</NavPill>
         </Link>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
