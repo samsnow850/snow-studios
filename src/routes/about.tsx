@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import { StoreBadges } from "@/components/StoreBadges";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
 import sailingPhoto from "@/assets/samuel-snow.jpg.asset.json";
 import instagramLogo from "@/assets/instagram-logo.png.asset.json";
 
