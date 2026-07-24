@@ -1,6 +1,46 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { apps } from "@/data/apps";
+
+const pillTransition = {
+  type: "spring",
+  stiffness: 380,
+  damping: 32,
+};
+
+function NavPill({ active, children, onClick, isButton = false }: {
+  active: boolean;
+  children: React.ReactNode;
+  onClick?: (e: React.MouseEvent) => void;
+  isButton?: boolean;
+}) {
+  return (
+    <div className="relative">
+      {active && (
+        <motion.div
+          layoutId="nav-active-pill"
+          className="absolute inset-0 rounded-full bg-white/10"
+          transition={pillTransition}
+          initial={false}
+        />
+      )}
+      {isButton ? (
+        <button
+          type="button"
+          onClick={onClick}
+          className="relative z-10 flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium text-white/80 transition-colors hover:text-white"
+        >
+          {children}
+        </button>
+      ) : (
+        <span className="relative z-10 block rounded-full px-4 py-1.5 text-sm font-medium text-white/80 transition-colors hover:text-white">
+          {children}
+        </span>
+      )}
+    </div>
+  );
+}
 
 export function FloatingNav() {
   const [open, setOpen] = useState(false);
@@ -33,26 +73,19 @@ export function FloatingNav() {
               scrollTop();
             }
           }}
-          className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors hover:bg-white/5 hover:text-white ${
-            isHome ? "bg-white/10 text-white" : "text-white/80"
-          }`}
         >
-          Home
+          <NavPill active={isHome}>Home</NavPill>
         </Link>
 
         <div className="relative" ref={ref}>
-          <button
-            type="button"
+          <NavPill
+            active={isApps}
+            isButton
             onClick={() => setOpen((v) => !v)}
-            className={`flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium transition-colors hover:bg-white/5 hover:text-white ${
-              isApps ? "bg-white/10 text-white" : "text-white/80"
-            }`}
-            aria-haspopup="menu"
-            aria-expanded={open}
           >
             Apps
             <span className="block h-1.5 w-1.5 rounded-full bg-[var(--color-accent-blue)]" />
-          </button>
+          </NavPill>
 
           {open && (
             <div
@@ -97,11 +130,8 @@ export function FloatingNav() {
               scrollTop();
             }
           }}
-          className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors hover:bg-white/5 hover:text-white ${
-            isAbout ? "bg-white/10 text-white" : "text-white/80"
-          }`}
         >
-          About
+          <NavPill active={isAbout}>About</NavPill>
         </Link>
 
         <Link
@@ -112,11 +142,8 @@ export function FloatingNav() {
               scrollTop();
             }
           }}
-          className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors hover:bg-white/5 hover:text-white ${
-            isContact ? "bg-white/10 text-white" : "text-white/80"
-          }`}
         >
-          Contact
+          <NavPill active={isContact}>Contact</NavPill>
         </Link>
       </div>
     </nav>
