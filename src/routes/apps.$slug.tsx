@@ -112,7 +112,7 @@ function AppPage() {
                     </span>
                   </li>
                 ))}
-              </motion.ul>
+              </ul>
             </div>
           ) : (
             <div className="relative overflow-hidden rounded-3xl bg-stone outline outline-1 -outline-offset-1 outline-black/5">
