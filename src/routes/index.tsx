@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
 import { apps } from "@/data/apps";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
 import sfSkyline from "@/assets/sf-skyline.jpg.asset.json";
 import nySkyline from "@/assets/ny-skyline.jpg.asset.json";
 import samuelPhoto from "@/assets/samuel-snow.jpg.asset.json";
