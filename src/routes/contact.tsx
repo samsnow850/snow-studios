@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import { apps } from "@/data/apps";
+import { FadeIn } from "@/components/FadeIn";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
