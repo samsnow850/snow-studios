@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { apps } from "@/data/apps";
 
 const pillTransition = {
-  type: "spring",
+  type: "spring" as const,
   stiffness: 380,
   damping: 32,
 };
