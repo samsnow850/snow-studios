@@ -94,10 +94,7 @@ function AppPage() {
         <section className="mx-auto max-w-5xl px-6">
           {app.screenshots && app.screenshots.length > 0 ? (
             <div className="rounded-3xl bg-stone p-6 outline outline-1 -outline-offset-1 outline-black/5 sm:p-10">
-              <motion.ul
-                drag="x"
-                dragConstraints={{ right: 0, left: -800 }}
-                dragElastic={0.1}
+              <ul
                 className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2 sm:grid sm:snap-none sm:grid-cols-4 sm:gap-6 sm:overflow-visible"
               >
                 {app.screenshots.map((s) => (
