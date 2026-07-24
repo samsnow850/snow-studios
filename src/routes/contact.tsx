@@ -86,143 +86,151 @@ function ContactPage() {
   return (
     <div className="min-h-screen bg-canvas text-ink">
       <div className="mx-auto max-w-2xl px-6 pt-32 pb-40">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-ink/40">
-          Contact
-        </p>
-        <h1 className="font-display mt-4 text-5xl font-medium tracking-tight md:text-6xl">
-          Say hi.
-        </h1>
-        <p className="mt-4 max-w-xl text-lg font-light text-ink/60">
-          Bugs, ideas, feedback, or just hello — pick the app, tell me what's up, and
-          I'll get back to you.
-        </p>
+        <FadeIn>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-ink/40">
+            Contact
+          </p>
+          <h1 className="font-display mt-4 text-5xl font-medium tracking-tight md:text-6xl">
+            Say hi.
+          </h1>
+          <p className="mt-4 max-w-xl text-lg font-light text-ink/60">
+            Bugs, ideas, feedback, or just hello — pick the app, tell me what's up, and
+            I'll get back to you.
+          </p>
+        </FadeIn>
 
         {sent ? (
-          <div className="mt-12 rounded-2xl border border-ink/10 bg-stone p-8 shadow-sm">
-            <p className="font-display text-2xl">Your mail app should be open.</p>
-            <p className="mt-3 text-sm text-ink/60">
-              If nothing happened, email me directly at{" "}
-              <a className="underline" href={`mailto:${CONTACT_EMAIL}`}>
-                {CONTACT_EMAIL}
-              </a>
-              .
-            </p>
-            <button
-              type="button"
-              onClick={() => setSent(false)}
-              className="mt-6 rounded-full border border-ink/15 px-5 py-2 text-sm hover:bg-ink/5"
-            >
-              Send another
-            </button>
-          </div>
-        ) : (
-          <form onSubmit={onSubmit} className="mt-12 space-y-6">
-            <div className="grid gap-6 md:grid-cols-2">
-              <Field label="Which app is this about?">
-                <div className="relative">
-                  <select
-                    value={app}
-                    onChange={(e) => setApp(e.target.value)}
-                    className="w-full appearance-none rounded-xl border border-ink/15 bg-stone px-4 py-3 pr-10 text-sm outline-none focus:border-ink/40"
-                  >
-                    {APP_OPTIONS.map((a) => (
-                      <option key={a.slug} value={a.slug}>
-                        {a.name}
-                      </option>
-                    ))}
-                  </select>
-                  <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-ink/50">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="m6 9 6 6 6-6" />
-                    </svg>
-                  </span>
-                </div>
-              </Field>
-
-              <Field label="What kind of message?">
-                <div className="relative">
-                  <select
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value as (typeof CATEGORIES)[number]["id"])}
-                    className="w-full appearance-none rounded-xl border border-ink/15 bg-stone px-4 py-3 pr-10 text-sm outline-none focus:border-ink/40"
-                  >
-                    {CATEGORIES.map((c) => (
-                      <option key={c.id} value={c.id}>
-                        {c.label}
-                      </option>
-                    ))}
-                  </select>
-                  <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-ink/50">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="m6 9 6 6 6-6" />
-                    </svg>
-                  </span>
-                </div>
-              </Field>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2">
-              <Field label="Your name" error={errors.name}>
-                <input
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  maxLength={100}
-                  className="w-full rounded-xl border border-ink/15 bg-stone px-4 py-3 text-sm outline-none focus:border-ink/40"
-                  placeholder="Jane Appleseed"
-                />
-              </Field>
-              <Field label="Your email" error={errors.email}>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  maxLength={255}
-                  className="w-full rounded-xl border border-ink/15 bg-stone px-4 py-3 text-sm outline-none focus:border-ink/40"
-                  placeholder="you@example.com"
-                />
-              </Field>
-            </div>
-
-            <Field label="Subject" error={errors.subject}>
-              <input
-                value={subject}
-                onChange={(e) => setSubject(e.target.value)}
-                maxLength={140}
-                className="w-full rounded-xl border border-ink/15 bg-stone px-4 py-3 text-sm outline-none focus:border-ink/40"
-                placeholder="Short summary"
-              />
-            </Field>
-
-            <Field label="Message" error={errors.message}>
-              <textarea
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                maxLength={5000}
-                rows={8}
-                className="w-full resize-y rounded-xl border border-ink/15 bg-stone px-4 py-3 text-sm outline-none focus:border-ink/40"
-                placeholder="Tell me what's going on…"
-              />
-              <p className="mt-1 text-right text-[11px] text-ink/40">
-                {message.length} / 5000
-              </p>
-            </Field>
-
-            <div className="flex flex-col items-start gap-3 pt-2 md:flex-row md:items-center md:justify-between">
-              <p className="text-xs text-ink/50">
-                Prefer email? Write me at{" "}
+          <FadeIn delay={0.1} className="mt-12">
+            <div className="rounded-2xl border border-ink/10 bg-stone p-8 shadow-sm">
+              <p className="font-display text-2xl">Your mail app should be open.</p>
+              <p className="mt-3 text-sm text-ink/60">
+                If nothing happened, email me directly at{" "}
                 <a className="underline" href={`mailto:${CONTACT_EMAIL}`}>
                   {CONTACT_EMAIL}
                 </a>
                 .
               </p>
               <button
-                type="submit"
-                className="rounded-full bg-ink px-6 py-3 text-sm font-medium text-canvas transition hover:bg-ink/85"
+                type="button"
+                onClick={() => setSent(false)}
+                className="mt-6 rounded-full border border-ink/15 px-5 py-2 text-sm hover:bg-ink/5"
               >
-                Send message
+                Send another
               </button>
             </div>
-          </form>
+          </FadeIn>
+        ) : (
+          <FadeIn delay={0.1} className="mt-12">
+            <form onSubmit={onSubmit} className="space-y-6">
+              <div className="grid gap-6 md:grid-cols-2">
+                <Field label="Which app is this about?">
+                  <div className="relative">
+                    <select
+                      value={app}
+                      onChange={(e) => setApp(e.target.value)}
+                      className="w-full appearance-none rounded-xl border border-ink/15 bg-stone px-4 py-3 pr-10 text-sm outline-none focus:border-ink/40"
+                    >
+                      {APP_OPTIONS.map((a) => (
+                        <option key={a.slug} value={a.slug}>
+                          {a.name}
+                        </option>
+                      ))}
+                    </select>
+                    <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-ink/50">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    </span>
+                  </div>
+                </Field>
+
+                <Field label="What kind of message?">
+                  <div className="relative">
+                    <select
+                      value={category}
+                      onChange={(e) => setCategory(e.target.value as (typeof CATEGORIES)[number]["id"])}
+                      className="w-full appearance-none rounded-xl border border-ink/15 bg-stone px-4 py-3 pr-10 text-sm outline-none focus:border-ink/40"
+                    >
+                      {CATEGORIES.map((c) => (
+                        <option key={c.id} value={c.id}>
+                          {c.label}
+                        </option>
+                      ))}
+                    </select>
+                    <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-ink/50">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    </span>
+                  </div>
+                </Field>
+              </div>
+
+              <div className="grid gap-6 md:grid-cols-2">
+                <Field label="Your name" error={errors.name}>
+                  <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    maxLength={100}
+                    className="w-full rounded-xl border border-ink/15 bg-stone px-4 py-3 text-sm outline-none focus:border-ink/40"
+                    placeholder="Jane Appleseed"
+                  />
+                </Field>
+                <Field label="Your email" error={errors.email}>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    maxLength={255}
+                    className="w-full rounded-xl border border-ink/15 bg-stone px-4 py-3 text-sm outline-none focus:border-ink/40"
+                    placeholder="you@example.com"
+                  />
+                </Field>
+              </div>
+
+              <Field label="Subject" error={errors.subject}>
+                <input
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
+                  maxLength={140}
+                  className="w-full rounded-xl border border-ink/15 bg-stone px-4 py-3 text-sm outline-none focus:border-ink/40"
+                  placeholder="Short summary"
+                />
+              </Field>
+
+              <Field label="Message" error={errors.message}>
+                <textarea
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  maxLength={5000}
+                  rows={8}
+                  className="w-full resize-y rounded-xl border border-ink/15 bg-stone px-4 py-3 text-sm outline-none focus:border-ink/40"
+                  placeholder="Tell me what's going on…"
+                />
+                <p className="mt-1 text-right text-[11px] text-ink/40">
+                  {message.length} / 5000
+                </p>
+              </Field>
+
+              <div className="flex flex-col items-start gap-3 pt-2 md:flex-row md:items-center md:justify-between">
+                <p className="text-xs text-ink/50">
+                  Prefer email? Write me at{" "}
+                  <a className="underline" href={`mailto:${CONTACT_EMAIL}`}>
+                    {CONTACT_EMAIL}
+                  </a>
+                  .
+                </p>
+                <motion.button
+                  whileHover={{ y: -2, scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  type="submit"
+                  className="rounded-full bg-ink px-6 py-3 text-sm font-medium text-canvas transition hover:bg-ink/85"
+                >
+                  Send message
+                </motion.button>
+              </div>
+            </form>
+          </FadeIn>
         )}
       </div>
     </div>
