@@ -186,21 +186,21 @@ function Index() {
 
         {/* Philosophy */}
         <FadeIn className="mt-24">
-          <section className="grid gap-12 md:grid-cols-3">
+          <section className="grid gap-12">
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-ink/40">Philosophy</p>
               <h2 className="mt-4 font-display text-3xl font-light leading-tight md:text-4xl">
                 Small tools, made with <span className="italic font-medium">care</span>.
               </h2>
             </div>
-            <StaggerContainer className="contents md:contents">
+            <StaggerContainer className="grid gap-8 md:grid-cols-3">
               {[
                 { t: "Quiet by default", b: "No ads, no tracking, no dark patterns. Just the app doing its job." },
                 { t: "Specific over general", b: "Each app solves one real problem for a real place or routine." },
                 { t: "Made to last", b: "Ongoing updates, thoughtful details, and a design that ages well." },
               ].map((c) => (
                 <StaggerItem key={c.t}>
-                  <div className="border-t border-ink/10 pt-6 md:col-span-1 md:border-t-0 md:border-l md:pt-0 md:pl-6">
+                  <div className="border-t border-ink/10 pt-6 md:border-t-0 md:border-l md:pt-0 md:pl-6">
                     <h3 className="font-display text-lg font-medium">{c.t}</h3>
                     <p className="mt-2 text-sm font-light leading-relaxed text-ink/60">{c.b}</p>
                   </div>
