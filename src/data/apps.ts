@@ -272,6 +272,31 @@ export const apps: AppEntry[] = [
     ],
     changelog: [
       {
+        version: "1.9",
+        date: "July 15, 2026",
+        notes: [
+          "Product costs and inventory value",
+          "Item photos stay synced to the cloud",
+          "Offline sheet closes when you're back online",
+          "In-app feedback for bugs, feature requests, and support",
+        ],
+        behind: ["Small fixes you might not notice, but you'd notice if they weren't fixed."],
+      },
+      {
+        version: "1.8",
+        date: "July 13, 2026",
+        notes: [
+          "Item notes",
+          "Expiration dates",
+          "Quantity units",
+          "Clone an item with one tap",
+          "Cloud backups",
+          "Items can live on multiple shelves",
+          "Deleting a shelf keeps shared items",
+        ],
+        behind: ["Small fixes you might not notice, but you'd notice if they weren't fixed."],
+      },
+      {
         version: "1.7",
         date: "June 15, 2026",
         notes: [
