@@ -72,7 +72,7 @@ function About() {
               </h2>
               <StoreBadges
                 appStore="https://apps.apple.com/us/developer/samuel-snow/id1829824175"
-                playStore="https://play.google.com/store/apps/dev?id=7438315602211912725"
+                playStore="https://play.google.com/store/apps/dev?id=7438315602211912725&hl=en_US"
                 className="mb-6"
               />
               <ul className="space-y-3">
