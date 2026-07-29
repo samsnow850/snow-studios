@@ -109,7 +109,7 @@ export function FloatingNav() {
                     to="/apps/$slug"
                     params={{ slug: a.slug }}
                     onClick={() => setOpen(false)}
-                    className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-white/70 transition-colors hover:bg-white/5 hover:text-white"
+                    className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-ink/70 transition-colors hover:bg-ink/5 hover:text-ink"
                     role="menuitem"
                   >
                     {a.logo ? (
@@ -119,11 +119,11 @@ export function FloatingNav() {
                         className="h-9 w-9 flex-shrink-0 rounded-lg object-cover"
                       />
                     ) : (
-                      <div className="h-9 w-9 flex-shrink-0 rounded-lg bg-white/5" />
+                      <div className="h-9 w-9 flex-shrink-0 rounded-lg bg-ink/5" />
                     )}
                     <div className="flex flex-col">
                       <span className="text-sm font-medium">{a.name}</span>
-                      <span className="mt-0.5 text-[11px] text-white/40">
+                      <span className="mt-0.5 text-[11px] text-ink/40">
                         {a.platforms.join(" + ")}
                       </span>
                     </div>
