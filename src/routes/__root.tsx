@@ -60,13 +60,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Snow Studios" },
+      { title: "Snow Studios — Small apps for places you care about" },
       {
         name: "description",
         content:
           "I'm a developer building useful, polished apps that solve real problems. Home of SF POPOS, NY POPS, and Shelf Track.",
       },
-      { property: "og:title", content: "Snow Studios" },
+      { property: "og:title", content: "Snow Studios — Small apps for places you care about" },
       {
         property: "og:description",
         content:
@@ -74,10 +74,34 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Snow Studios" },
+      { name: "twitter:title", content: "Snow Studios — Small apps for places you care about" },
       { name: "twitter:description", content: "I'm a developer building useful, polished apps that solve real problems. Home of SF POPOS, NY POPS, and Shelf Track." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/21785d91-25e2-4b8d-92ab-11d3f85974ef" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/21785d91-25e2-4b8d-92ab-11d3f85974ef" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Snow Studios",
+          url: "https://snowstudios.app",
+          description:
+            "Independent app studio behind SF POPOS, NY POPS, and Shelf Track.",
+          founder: { "@type": "Person", name: "Samuel Snow" },
+          sameAs: ["https://www.instagram.com/samsnow850"],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Snow Studios",
+          url: "https://snowstudios.app",
+        }),
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

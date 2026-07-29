@@ -37,6 +37,7 @@ export type AppEntry = {
   slug: "sf-popos" | "ny-pops" | "shelf-track";
   name: string;
   tagline: string;
+  seoTitle?: string;
   short: string;
   long: string;
   platforms: AppPlatform[];
@@ -58,6 +59,7 @@ export const apps: AppEntry[] = [
     slug: "sf-popos",
     name: "SF POPOS",
     tagline: "A field guide to San Francisco's hidden public spaces.",
+    seoTitle: "SF POPOS — Hidden public spaces in San Francisco",
     short: "80+ Privately Owned Public Open Spaces in San Francisco — mapped, searchable, and always in your pocket.",
     long: "Downtown San Francisco is full of rooftop terraces, quiet gardens, and sunlit atriums that most people walk right past. SF POPOS maps every single one — over 80 privately owned public open spaces — so you can find a place to sit, read, or take a break wherever you are.",
     platforms: ["iOS", "Android"],
@@ -123,6 +125,7 @@ export const apps: AppEntry[] = [
     slug: "ny-pops",
     name: "NY POPS",
     tagline: "New York has hidden places. Here's how to find them.",
+    seoTitle: "NY POPS — Find New York's hidden public spaces",
     short: "The best clean, free, and quiet public spaces across New York City — from atriums to plazas.",
     long: "NY POPS is a curated guide to New York's Privately Owned Public Spaces — the plazas, arcades, and indoor atriums that stay open to the public. Great for finding somewhere to sit, work, or duck out of the weather.",
     platforms: ["iOS", "Android"],
