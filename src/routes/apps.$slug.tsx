@@ -86,7 +86,7 @@ function AppPage() {
       <FadeIn delay={0.1}>
         <section className="mx-auto max-w-5xl px-6">
           {app.screenshots && app.screenshots.length > 0 ? (
-            <div className="rounded-3xl bg-stone p-6 outline outline-1 -outline-offset-1 outline-black/5 sm:p-10">
+            <div className="rounded-3xl bg-stone p-6 outline outline-1 -outline-offset-1 outline-ink/5 sm:p-10">
               <ul
                 className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2 sm:grid sm:snap-none sm:grid-cols-4 sm:gap-6 sm:overflow-visible"
               >
@@ -108,7 +108,7 @@ function AppPage() {
               </ul>
             </div>
           ) : (
-            <div className="relative overflow-hidden rounded-3xl bg-stone outline outline-1 -outline-offset-1 outline-black/5">
+            <div className="relative overflow-hidden rounded-3xl bg-stone outline outline-1 -outline-offset-1 outline-ink/5">
               <img
                 src={app.image}
                 alt={`${app.name} preview`}
@@ -348,8 +348,7 @@ function FaqSection({ app }: { app: AppEntry }) {
               return (
                 <StaggerItem key={faq.q}>
                   <motion.div
-                    whileHover={{ backgroundColor: "rgba(255,255,255,0.03)" }}
-                    className="rounded-2xl border border-ink/5 bg-stone"
+                    className="rounded-2xl border border-ink/5 bg-stone transition-colors hover:bg-ink/5"
                   >
                     <button
                       type="button"
