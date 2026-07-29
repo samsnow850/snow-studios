@@ -2,8 +2,6 @@
 @source "../src";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -32,11 +30,11 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Architectural grid direction tokens */
-  --color-canvas: #0b0b0c;
-  --color-ink: #f2f2f0;
-  --color-accent-blue: #2d5bff;
-  --color-stone: #17181a;
+  /* Architectural tokens */
+  --color-canvas: var(--canvas);
+  --color-ink: var(--ink);
+  --color-accent-blue: var(--accent-blue);
+  --color-stone: var(--stone);
 
   --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -63,6 +61,40 @@
   --border: rgba(242, 242, 240, 0.08);
   --input: rgba(242, 242, 240, 0.1);
   --ring: rgba(242, 242, 240, 0.25);
+  --canvas: #0b0b0c;
+  --ink: #f2f2f0;
+  --stone: #17181a;
+  --accent-blue: #2d5bff;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #f7f7f5;
+    --foreground: #111113;
+    --card: #ffffff;
+    --card-foreground: #111113;
+    --popover: #ffffff;
+    --popover-foreground: #111113;
+    --primary: #111113;
+    --primary-foreground: #f7f7f5;
+    --secondary: #f0f0ed;
+    --secondary-foreground: #111113;
+    --muted: #f0f0ed;
+    --muted-foreground: #6f6f6b;
+    --accent: #2d5bff;
+    --accent-foreground: #ffffff;
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: #ffffff;
+    --border: rgba(17, 17, 19, 0.08);
+    --input: rgba(17, 17, 19, 0.1);
+    --ring: rgba(17, 17, 19, 0.25);
+    --canvas: #f7f7f5;
+    --ink: #111113;
+    --stone: #efefed;
+    --accent-blue: #2d5bff;
+    color-scheme: light;
+  }
 }
 
 @layer base {

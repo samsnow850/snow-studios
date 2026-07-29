@@ -15,12 +15,13 @@ function NavPill({ active, children, onClick, isButton = false }: {
   onClick?: (e: React.MouseEvent) => void;
   isButton?: boolean;
 }) {
+  const baseText = active ? "text-canvas" : "text-ink/80 hover:text-ink";
   return (
     <div className="relative">
       {active && (
         <motion.div
           layoutId="nav-active-pill"
-          className="absolute inset-0 rounded-full bg-white/10"
+          className="absolute inset-0 rounded-full bg-ink"
           transition={pillTransition}
           initial={false}
         />
@@ -29,12 +30,12 @@ function NavPill({ active, children, onClick, isButton = false }: {
         <button
           type="button"
           onClick={onClick}
-          className="relative z-10 flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium text-white/80 transition-colors hover:text-white"
+          className={`relative z-10 flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${baseText}`}
         >
           {children}
         </button>
       ) : (
-        <span className="relative z-10 block rounded-full px-4 py-1.5 text-sm font-medium text-white/80 transition-colors hover:text-white">
+        <span className={`relative z-10 block rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${baseText}`}>
           {children}
         </span>
       )}
@@ -69,7 +70,7 @@ export function FloatingNav() {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
       className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2"
     >
-      <div className="flex items-center gap-1 rounded-full border border-white/10 bg-[#1a1a1a]/95 px-2 py-2 shadow-2xl backdrop-blur-md">
+      <div className="flex items-center gap-1 rounded-full border border-ink/10 bg-stone/95 px-2 py-2 shadow-2xl backdrop-blur-md">
         <Link
           to="/"
           onClick={(e) => {
@@ -100,7 +101,7 @@ export function FloatingNav() {
                 exit={{ opacity: 0, y: 12, scale: 0.96 }}
                 transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
                 role="menu"
-                className="absolute bottom-full left-1/2 mb-4 w-64 -translate-x-1/2 rounded-2xl border border-white/10 bg-[#1a1a1a] p-2 shadow-xl"
+                className="absolute bottom-full left-1/2 mb-4 w-64 -translate-x-1/2 rounded-2xl border border-ink/10 bg-stone p-2 shadow-xl"
               >
                 {apps.map((a) => (
                   <Link
@@ -108,7 +109,7 @@ export function FloatingNav() {
                     to="/apps/$slug"
                     params={{ slug: a.slug }}
                     onClick={() => setOpen(false)}
-                    className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-white/70 transition-colors hover:bg-white/5 hover:text-white"
+                    className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-ink/70 transition-colors hover:bg-ink/5 hover:text-ink"
                     role="menuitem"
                   >
                     {a.logo ? (
@@ -118,11 +119,11 @@ export function FloatingNav() {
                         className="h-9 w-9 flex-shrink-0 rounded-lg object-cover"
                       />
                     ) : (
-                      <div className="h-9 w-9 flex-shrink-0 rounded-lg bg-white/5" />
+                      <div className="h-9 w-9 flex-shrink-0 rounded-lg bg-ink/5" />
                     )}
                     <div className="flex flex-col">
                       <span className="text-sm font-medium">{a.name}</span>
-                      <span className="mt-0.5 text-[11px] text-white/40">
+                      <span className="mt-0.5 text-[11px] text-ink/40">
                         {a.platforms.join(" + ")}
                       </span>
                     </div>

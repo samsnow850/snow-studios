@@ -121,7 +121,7 @@ function Index() {
                   animate="rest"
                   variants={hoverLift}
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative overflow-hidden rounded-3xl bg-stone outline outline-1 -outline-offset-1 outline-black/5"
+                  className="relative overflow-hidden rounded-3xl bg-stone outline outline-1 -outline-offset-1 outline-ink/5"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1fr]">
                     <div className="flex flex-col justify-between gap-10 p-8 md:p-12">
