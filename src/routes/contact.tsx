@@ -123,9 +123,10 @@ function ContactPage() {
           <FadeIn delay={0.1} className="mt-12">
             <form onSubmit={onSubmit} className="space-y-6">
               <div className="grid gap-6 md:grid-cols-2">
-                <Field label="Which app is this about?">
+                <Field label="Which app is this about?" htmlFor="contact-app">
                   <div className="relative">
                     <select
+                      id="contact-app"
                       value={app}
                       onChange={(e) => setApp(e.target.value)}
                       className="w-full appearance-none rounded-xl border border-ink/15 bg-stone px-4 py-3 pr-10 text-sm outline-none focus:border-ink/40"
@@ -144,9 +145,10 @@ function ContactPage() {
                   </div>
                 </Field>
 
-                <Field label="What kind of message?">
+                <Field label="What kind of message?" htmlFor="contact-category">
                   <div className="relative">
                     <select
+                      id="contact-category"
                       value={category}
                       onChange={(e) => setCategory(e.target.value as (typeof CATEGORIES)[number]["id"])}
                       className="w-full appearance-none rounded-xl border border-ink/15 bg-stone px-4 py-3 pr-10 text-sm outline-none focus:border-ink/40"
@@ -167,8 +169,9 @@ function ContactPage() {
               </div>
 
               <div className="grid gap-6 md:grid-cols-2">
-                <Field label="Your name" error={errors.name}>
+                <Field label="Your name" htmlFor="contact-name" error={errors.name}>
                   <input
+                    id="contact-name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     maxLength={100}
@@ -176,8 +179,9 @@ function ContactPage() {
                     placeholder="Jane Appleseed"
                   />
                 </Field>
-                <Field label="Your email" error={errors.email}>
+                <Field label="Your email" htmlFor="contact-email" error={errors.email}>
                   <input
+                    id="contact-email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -188,8 +192,9 @@ function ContactPage() {
                 </Field>
               </div>
 
-              <Field label="Subject" error={errors.subject}>
+              <Field label="Subject" htmlFor="contact-subject" error={errors.subject}>
                 <input
+                  id="contact-subject"
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                   maxLength={140}
@@ -198,8 +203,9 @@ function ContactPage() {
                 />
               </Field>
 
-              <Field label="Message" error={errors.message}>
+              <Field label="Message" htmlFor="contact-message" error={errors.message}>
                 <textarea
+                  id="contact-message"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   maxLength={5000}
@@ -239,16 +245,18 @@ function ContactPage() {
 
 function Field({
   label,
+  htmlFor,
   error,
   children,
 }: {
   label: string;
+  htmlFor?: string;
   error?: string;
   children: React.ReactNode;
 }) {
   return (
     <div>
-      <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.2em] text-ink/50">
+      <label htmlFor={htmlFor} className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.2em] text-ink/50">
         {label}
       </label>
       {children}
