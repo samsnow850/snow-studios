@@ -70,7 +70,7 @@ export function FloatingNav() {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
       className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2"
     >
-      <div className="flex items-center gap-1 rounded-full border border-white/10 bg-[#1a1a1a]/95 px-2 py-2 shadow-2xl backdrop-blur-md">
+      <div className="flex items-center gap-1 rounded-full border border-ink/10 bg-stone/95 px-2 py-2 shadow-2xl backdrop-blur-md">
         <Link
           to="/"
           onClick={(e) => {
@@ -101,7 +101,7 @@ export function FloatingNav() {
                 exit={{ opacity: 0, y: 12, scale: 0.96 }}
                 transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
                 role="menu"
-                className="absolute bottom-full left-1/2 mb-4 w-64 -translate-x-1/2 rounded-2xl border border-white/10 bg-[#1a1a1a] p-2 shadow-xl"
+                className="absolute bottom-full left-1/2 mb-4 w-64 -translate-x-1/2 rounded-2xl border border-ink/10 bg-stone p-2 shadow-xl"
               >
                 {apps.map((a) => (
                   <Link
