@@ -88,7 +88,8 @@ export async function buildReport(requestedSite?: string): Promise<SeoReport> {
   const siteList = await gsc("/webmasters/v3/sites");
   const sites: string[] = (siteList.siteEntry ?? []).map((s: any) => s.siteUrl);
   if (sites.length === 0) throw new Error("No verified Search Console properties on the connected account.");
-  const siteUrl = requestedSite && sites.includes(requestedSite) ? requestedSite : sites[0];
+  const preferred = sites.find((s) => s.includes("snowstudios.app")) ?? sites[0];
+  const siteUrl = requestedSite && sites.includes(requestedSite) ? requestedSite : preferred;
   const enc = encodeURIComponent(siteUrl);
 
   const end = isoDaysAgo(1);
