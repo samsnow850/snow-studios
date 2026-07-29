@@ -20,11 +20,48 @@ export const Route = createFileRoute("/apps/$slug")({
       return { meta: [{ title: "App not found" }, { name: "robots", content: "noindex" }] };
     }
     const app = getApp(loaderData.slug);
+    const pageTitle = app.seoTitle ?? `${app.name} — ${app.tagline}`;
+    const url = `https://snowstudios.app/apps/${app.slug}`;
+    const scripts = [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: app.name,
+          description: app.short,
+          url,
+          applicationCategory: "MobileApplication",
+          operatingSystem: app.platforms.join(", "),
+          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          publisher: { "@type": "Organization", name: "Snow Studios" },
+        }),
+      },
+      ...(app.faqs && app.faqs.length > 0
+        ? [
+            {
+              type: "application/ld+json",
+              children: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: app.faqs.map((faq) => ({
+                  "@type": "Question",
+                  name: faq.q,
+                  acceptedAnswer: { "@type": "Answer", text: faq.a },
+                })),
+              }),
+            },
+          ]
+        : []),
+    ];
     return {
+      scripts,
+      links: [{ rel: "canonical", href: url }],
       meta: [
-        { title: `${app.name} — ${app.tagline}` },
+        { title: pageTitle },
         { name: "description", content: app.short },
-        { property: "og:title", content: `${app.name} — ${app.tagline}` },
+        { property: "og:title", content: pageTitle },
+        { property: "og:url", content: url },
         { property: "og:description", content: app.short },
         { property: "og:type", content: "website" },
         { property: "og:image", content: app.image },

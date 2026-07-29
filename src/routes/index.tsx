@@ -228,7 +228,7 @@ function Index() {
                 to="/about"
                 className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-canvas transition-colors hover:bg-ink/90"
               >
-                Read more <span aria-hidden>→</span>
+                Read Samuel's full story <span aria-hidden>→</span>
               </Link>
             </div>
           </section>
