@@ -15,12 +15,13 @@ function NavPill({ active, children, onClick, isButton = false }: {
   onClick?: (e: React.MouseEvent) => void;
   isButton?: boolean;
 }) {
+  const baseText = active ? "text-canvas" : "text-ink/80 hover:text-ink";
   return (
     <div className="relative">
       {active && (
         <motion.div
           layoutId="nav-active-pill"
-          className="absolute inset-0 rounded-full bg-white/10"
+          className="absolute inset-0 rounded-full bg-ink"
           transition={pillTransition}
           initial={false}
         />
@@ -29,12 +30,12 @@ function NavPill({ active, children, onClick, isButton = false }: {
         <button
           type="button"
           onClick={onClick}
-          className="relative z-10 flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium text-white/80 transition-colors hover:text-white"
+          className={`relative z-10 flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${baseText}`}
         >
           {children}
         </button>
       ) : (
-        <span className="relative z-10 block rounded-full px-4 py-1.5 text-sm font-medium text-white/80 transition-colors hover:text-white">
+        <span className={`relative z-10 block rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${baseText}`}>
           {children}
         </span>
       )}
