@@ -52,13 +52,6 @@ function AppPage() {
     <div className="min-h-screen bg-canvas pb-40 text-ink">
       <FadeIn>
         <header className="mx-auto max-w-5xl px-6 pt-28 pb-12 md:pt-36">
-          <Link
-            to="/"
-            className="mb-10 inline-flex items-center gap-2 text-sm font-medium text-ink/50 transition-colors hover:text-ink"
-          >
-            <span aria-hidden>←</span> All apps
-          </Link>
-
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-ink/40">
             {app.platforms.join(" · ")}
           </p>
