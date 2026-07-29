@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import { StoreBadges } from "@/components/StoreBadges";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
 import sailingPhoto from "@/assets/samuel-snow.jpg.asset.json";
-import instagramLogo from "@/assets/instagram-logo.png.asset.json";
+import instagramGlyph from "@/assets/instagram-glyph.jpg.asset.json";
+import instagramWordmark from "@/assets/instagram-wordmark.png.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -86,9 +87,15 @@ function About() {
                     className="inline-flex items-center gap-2 text-ink/80 transition-opacity hover:opacity-80"
                   >
                     <img
-                      src={instagramLogo.url}
+                      src={instagramGlyph.url}
                       alt="Instagram"
-                      className="h-8 w-8"
+                      className="h-8 w-8 rounded-lg sm:hidden"
+                      loading="lazy"
+                    />
+                    <img
+                      src={instagramWordmark.url}
+                      alt="Instagram"
+                      className="hidden h-8 w-auto rounded-lg bg-white px-2 py-1 sm:block"
                       loading="lazy"
                     />
                   </motion.a>
