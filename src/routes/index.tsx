@@ -2,17 +2,17 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { apps } from "@/data/apps";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
-import sfSkyline from "@/assets/sf-skyline.jpg.asset.json";
-import nySkyline from "@/assets/ny-skyline.jpg.asset.json";
-import samuelPhoto from "@/assets/samuel-snow.jpg.asset.json";
+import sfSkyline from "@/assets/sf-skyline.jpg";
+import nySkyline from "@/assets/ny-skyline.jpg";
+import samuelPhoto from "@/assets/samuel-snow.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
 const heroImages: Record<string, string> = {
-  "sf-popos": sfSkyline.url,
-  "ny-pops": nySkyline.url,
+  "sf-popos": sfSkyline,
+  "ny-pops": nySkyline,
 };
 
 const hoverLift = {
@@ -214,7 +214,7 @@ function Index() {
         <FadeIn className="mt-24">
           <section className="grid gap-10 rounded-3xl bg-stone p-8 md:grid-cols-[1fr_1.2fr] md:p-12">
             <div className="overflow-hidden rounded-2xl">
-              <img src={samuelPhoto.url} alt="Samuel Snow" className="h-full w-full object-cover" />
+              <img src={samuelPhoto} alt="Samuel Snow" className="h-full w-full object-cover" />
             </div>
             <div className="flex flex-col justify-center">
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-ink/40">About the maker</p>

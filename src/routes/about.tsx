@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { StoreBadges } from "@/components/StoreBadges";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/FadeIn";
-import sailingPhoto from "@/assets/samuel-snow.jpg.asset.json";
-import instagramGlyph from "@/assets/instagram-glyph.jpg.asset.json";
-import instagramWordmark from "@/assets/instagram-wordmark.png.asset.json";
+import sailingPhoto from "@/assets/samuel-snow.jpg";
+import instagramGlyph from "@/assets/instagram-glyph.jpg";
+import instagramWordmark from "@/assets/instagram-wordmark.webp";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -61,7 +61,7 @@ function About() {
                 className="mb-8 overflow-hidden rounded-2xl border border-ink/10 shadow-lg"
               >
                 <img
-                  src={sailingPhoto.url}
+                  src={sailingPhoto}
                   alt="Samuel sailing on the bay"
                   className="h-auto w-full object-cover"
                   loading="lazy"
@@ -87,13 +87,13 @@ function About() {
                     className="inline-flex items-center gap-2 text-ink/80 transition-opacity hover:opacity-80"
                   >
                     <img
-                      src={instagramGlyph.url}
+                      src={instagramGlyph}
                       alt="Instagram"
                       className="h-8 w-8 rounded-lg sm:hidden"
                       loading="lazy"
                     />
                     <img
-                      src={instagramWordmark.url}
+                      src={instagramWordmark}
                       alt="Instagram"
                       className="hidden h-8 w-auto rounded-lg bg-white px-2 py-1 sm:block"
                       loading="lazy"
