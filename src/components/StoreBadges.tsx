@@ -1,5 +1,5 @@
-import appStoreBadge from "@/assets/app-store-badge.svg.asset.json";
-import googlePlayBadge from "@/assets/google-play-badge.png.asset.json";
+import appStoreBadge from "@/assets/app-store-badge.svg";
+import googlePlayBadge from "@/assets/google-play-badge.png";
 
 type Props = {
   appStore?: string;
@@ -20,7 +20,7 @@ export function StoreBadges({ appStore, playStore, className = "", size = "md" }
           aria-label="Download on the App Store"
           className="inline-block transition-opacity hover:opacity-85"
         >
-          <img src={appStoreBadge.url} alt="Download on the App Store" className={`${h} w-auto`} />
+          <img src={appStoreBadge} alt="Download on the App Store" className={`${h} w-auto`} />
         </a>
       )}
       {playStore && (
@@ -31,7 +31,7 @@ export function StoreBadges({ appStore, playStore, className = "", size = "md" }
           aria-label="Get it on Google Play"
           className="inline-block transition-opacity hover:opacity-85"
         >
-          <img src={googlePlayBadge.url} alt="Get it on Google Play" className={`${h} w-auto`} />
+          <img src={googlePlayBadge} alt="Get it on Google Play" className={`${h} w-auto`} />
         </a>
       )}
     </div>

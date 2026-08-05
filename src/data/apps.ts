@@ -1,17 +1,17 @@
 import sfPoposImage from "@/assets/app-sf-popos.jpg";
 import nyPopsImage from "@/assets/app-ny-pops.jpg";
 import shelfTrackImage from "@/assets/app-shelf-track.jpg";
-import sfPoposHome from "@/assets/sfpopos-homepage.png.asset.json";
-import sfPoposMap from "@/assets/sfpopos-map.png.asset.json";
-import sfPoposDetail from "@/assets/sfpopos-detail.png.asset.json";
-import sfPoposFavorites from "@/assets/sfpopos-favorites.png.asset.json";
-import sfPoposLogo from "@/assets/sfpopos-logo.png.asset.json";
-import nyPopsLogo from "@/assets/nypops-logo.png.asset.json";
-import shelfTrackLogo from "@/assets/shelftrack-logo.png.asset.json";
-import nyPopsHome from "@/assets/nypops-homepage.png.asset.json";
-import nyPopsMap from "@/assets/nypops-map.png.asset.json";
-import nyPopsFavorites from "@/assets/nypops-favorites.png.asset.json";
-import nyPopsDetail from "@/assets/nypops-detail.png.asset.json";
+import sfPoposHome from "@/assets/sfpopos-homepage.png";
+import sfPoposMap from "@/assets/sfpopos-map.png";
+import sfPoposDetail from "@/assets/sfpopos-detail.png";
+import sfPoposFavorites from "@/assets/sfpopos-favorites.png";
+import sfPoposLogo from "@/assets/sfpopos-logo.png";
+import nyPopsLogo from "@/assets/nypops-logo.png";
+import shelfTrackLogo from "@/assets/shelftrack-logo.png";
+import nyPopsHome from "@/assets/nypops-homepage.png";
+import nyPopsMap from "@/assets/nypops-map.png";
+import nyPopsFavorites from "@/assets/nypops-favorites.png";
+import nyPopsDetail from "@/assets/nypops-detail.png";
 
 export type AppPlatform = "iOS" | "Android" | "Universal";
 
@@ -68,12 +68,12 @@ export const apps: AppEntry[] = [
     playStore: "https://play.google.com/store/apps/details?id=com.sfpopos.app",
     image: sfPoposImage,
     imageAspect: "4/5",
-    logo: sfPoposLogo.url,
+    logo: sfPoposLogo,
     screenshots: [
-      { src: sfPoposHome.url, label: "Browse" },
-      { src: sfPoposMap.url, label: "Map" },
-      { src: sfPoposDetail.url, label: "Details" },
-      { src: sfPoposFavorites.url, label: "Favorites" },
+      { src: sfPoposHome, label: "Browse" },
+      { src: sfPoposMap, label: "Map" },
+      { src: sfPoposDetail, label: "Details" },
+      { src: sfPoposFavorites, label: "Favorites" },
     ],
     features: [
       { title: "Every space, one app", body: "Access all 80+ POPOS across San Francisco in a single, focused map." },
@@ -134,12 +134,12 @@ export const apps: AppEntry[] = [
     playStore: "https://play.google.com/store/apps/details?id=com.samuelsnow.nypops",
     image: nyPopsImage,
     imageAspect: "4/5",
-    logo: nyPopsLogo.url,
+    logo: nyPopsLogo,
     screenshots: [
-      { src: nyPopsHome.url, label: "Browse" },
-      { src: nyPopsMap.url, label: "Map" },
-      { src: nyPopsDetail.url, label: "Details" },
-      { src: nyPopsFavorites.url, label: "Favorites" },
+      { src: nyPopsHome, label: "Browse" },
+      { src: nyPopsMap, label: "Map" },
+      { src: nyPopsDetail, label: "Details" },
+      { src: nyPopsFavorites, label: "Favorites" },
     ],
     features: [
       { title: "Hidden places, mapped", body: "Hundreds of public spaces across Manhattan and the boroughs." },
@@ -206,7 +206,7 @@ export const apps: AppEntry[] = [
     itunesId: "6761561265",
     image: shelfTrackImage,
     imageAspect: "21/9",
-    logo: shelfTrackLogo.url,
+    logo: shelfTrackLogo,
     features: [
       { title: "Shelves your way", body: "Pantry, garage, bins, closets — name them anything. Items belong to one shelf and stay easy to find." },
       { title: "Quantities & quick adjust", body: "1 to 99,999. Tap the stepper on the item screen to bump counts without opening a full editor." },
